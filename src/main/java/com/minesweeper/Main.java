@@ -1,5 +1,7 @@
 package com.minesweeper;
 
+import com.minesweeper.utils.ClearScreen;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -23,10 +25,10 @@ public class Main {
 //          System.out.print("\033[H\033[2J");
 //          System.out.flush();
 //          runtime.exec("cls");
-          ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
-          pb.inheritIO().start().waitFor();
+
+          ClearScreen.clsCmd();
         }
-      } catch (IOException | InterruptedException e) {
+      } catch (IOException e) {
         e.printStackTrace();
       }
     }
