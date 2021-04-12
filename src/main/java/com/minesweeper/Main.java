@@ -1,5 +1,6 @@
 package com.minesweeper;
 
+import com.minesweeper.display.Window;
 import com.minesweeper.utils.ClearScreen;
 
 import java.io.IOException;
@@ -11,7 +12,6 @@ public class Main {
     boolean running = true;
     Scanner scanner = new Scanner(System.in);
     while (running) {
-      System.out.println("Hello");
       int select = scanner.nextInt();
       if (select == 1) {
         running = false;
@@ -25,8 +25,9 @@ public class Main {
 //          System.out.print("\033[H\033[2J");
 //          System.out.flush();
 //          runtime.exec("cls");
-
-          ClearScreen.clsCmd();
+          Window window = new Window();
+          window.setText("Hello");
+          window.show();
         }
       } catch (IOException e) {
         e.printStackTrace();
