@@ -22,12 +22,13 @@ public class Main {
         if (s.contains("linux")) {
           runtime.exec("clear");
         } else {
-//          System.out.print("\033[H\033[2J");
-//          System.out.flush();
-//          runtime.exec("cls");
           Window window = new Window();
           window.setText("Hello");
           window.show();
+          window.setText("Hello2", 6);
+          window.show(true);
+//          window.setText("Hello3", 6);
+//          window.show(false);
         }
       } catch (IOException e) {
         e.printStackTrace();
