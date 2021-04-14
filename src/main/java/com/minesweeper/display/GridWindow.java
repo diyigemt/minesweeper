@@ -28,7 +28,9 @@ public class GridWindow extends Window {
 	public boolean setCursorText(String text, int posY) {
 		if (!this.checkPos(posY)) return false;
 		int posCount = getPosXCount(text);
-		if (posCount == 0) return false;
+		if (posCount == 0) {
+			text = "%s" + text + "%s";
+		}
 		if (this.cursorPosY == -1) {
 			this.cursorPosY = 0;
 			this.cursorPosX = 0;
@@ -146,7 +148,7 @@ public class GridWindow extends Window {
 	public boolean hasRight() {
 		ArrayList<Integer> array = this.availablePos.get(this.cursorPosY).getArray();
 		if (array.isEmpty()) return false;
-		return this.cursorPosY < array.size() - 1;
+		return this.cursorPosX < array.size() - 1;
 	}
 
 	public boolean hasLeft() {
@@ -168,6 +170,8 @@ public class GridWindow extends Window {
 				continue;
 			}
 			if (i == posY) {
+				int size = info.getArray().size() - 1;
+				if (posX > size) posX = size;
 				int k = 0;
 				while (s.contains("%s")) {
 					if (k == posX) {

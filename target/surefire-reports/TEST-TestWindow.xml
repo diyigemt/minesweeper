@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="TestWindow" time="1.77" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="TestWindow" time="1.178" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2020.2.1"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -59,11 +59,11 @@
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="TestWindow" name="testCreateWindow" time="0.262"/>
-  <testcase classname="TestWindow" name="testNaviWindowNext" time="0.221"/>
-  <testcase classname="TestWindow" name="testNaviWindowPrev" time="0.239"/>
-  <testcase classname="TestWindow" name="testNaviWindowShow" time="0.195"/>
-  <testcase classname="TestWindow" name="testNaviWindowNext2" time="0.272"/>
-  <testcase classname="TestWindow" name="testNaviWindowPrev2" time="0.429"/>
-  <testcase classname="TestWindow" name="testNaviWindowOutOfBound" time="0.152"/>
+  <testcase classname="TestWindow" name="testCreateWindow" time="0.172"/>
+  <testcase classname="TestWindow" name="testNaviWindowNext" time="0.123"/>
+  <testcase classname="TestWindow" name="testNaviWindowPrev" time="0.172"/>
+  <testcase classname="TestWindow" name="testNaviWindowShow" time="0.125"/>
+  <testcase classname="TestWindow" name="testNaviWindowNext2" time="0.184"/>
+  <testcase classname="TestWindow" name="testNaviWindowPrev2" time="0.288"/>
+  <testcase classname="TestWindow" name="testNaviWindowOutOfBound" time="0.114"/>
 </testsuite>
