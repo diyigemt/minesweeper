@@ -95,4 +95,8 @@ public class NaviWindow extends Window{
 		if (this.availablePos.isEmpty()) return false;
 		return this.cursorPos > 0;
 	}
+
+	public int getCurrentCursorPos() {
+		return this.cursorPos;
+	}
 }
