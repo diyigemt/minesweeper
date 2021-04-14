@@ -5,10 +5,10 @@ import com.minesweeper.utils.Store;
 import com.minesweeper.utils.Utils;
 
 public class Window {
-	private int height; //控制台窗口能显示的行数
-	private int width; //控制台窗口每行能显示的列数
-	private String[] contain; //当前待显示内容
-	private String[] prevContain; // 之前窗口内容
+	protected int height; //控制台窗口能显示的行数
+	protected int width; //控制台窗口每行能显示的列数
+	protected String[] contain; //当前待显示内容
+	protected String[] prevContain; // 之前窗口内容
 	private int nextPosY; //下一行位置
 	private int startPosY = 0; //默认第一行的显示位置
 
@@ -42,6 +42,7 @@ public class Window {
 
 	/**
 	 * 将文本设置在下一行居中显示
+	 *
 	 * @param text 要设置的文本
 	 * @return 设置是否成功 当前屏幕没有下一行的时候返回false
 	 */
@@ -51,8 +52,9 @@ public class Window {
 
 	/**
 	 * 将文本设置在下一行 align自行设置
+	 *
 	 * @param text 要设置的文本
-	 * @param pos 文本align
+	 * @param pos  文本align
 	 * @return 设置是否成功 当前屏幕没有下一行的时候返回false
 	 */
 	public boolean setText(String text, TextPos pos) {
@@ -71,6 +73,7 @@ public class Window {
 
 	/**
 	 * 将文本设置在精确的位置
+	 *
 	 * @param text 要设置的文本
 	 * @param posX 文本左缩进
 	 * @param posY 文本行数位置
@@ -83,6 +86,7 @@ public class Window {
 
 	/**
 	 * 将文本设置在精确的位置 居中 自设行数
+	 *
 	 * @param text 要设置的文本
 	 * @param posY 文本行数位置
 	 * @return 设置是否成功 当前屏幕没有下一行的时候返回false
@@ -93,27 +97,30 @@ public class Window {
 
 	/**
 	 * 设置文本
+	 *
 	 * @param text 要设置的文本
 	 * @param posY 文本行数位置
 	 * @return 设置是否成功 当前屏幕没有下一行的时候返回false
 	 */
-	private boolean setNativeText(String text, int posY) {
-		if (!checkPos(this.nextPosY)) return false;
+	protected boolean setNativeText(String text, int posY) {
+		if (!checkPos(posY)) return false;
 		this.contain[posY] = text;
 		return true;
 	}
 
 	/**
 	 * 当前屏幕是否能容纳下该行
+	 *
 	 * @param target 测试的行数
 	 * @return 无法容纳时返回false
 	 */
-	private boolean checkPos(int target) {
+	protected boolean checkPos(int target) {
 		return target + 1 <= height;
 	}
 
 	/**
 	 * 打印屏幕内容
+	 *
 	 * @param isCover 是否合并之前屏幕内容
 	 * @return 是否打印成功
 	 */
@@ -137,6 +144,7 @@ public class Window {
 	/**
 	 * 打印屏幕内容
 	 * 打印前会清空屏幕
+	 *
 	 * @return 是否打印成功
 	 */
 	public boolean show() {
@@ -151,6 +159,18 @@ public class Window {
 		this.prevContain = this.contain.clone();
 		this.contain = new String[this.height];
 		this.nextPosY = this.startPosY;
+		return true;
+	}
+
+	public boolean staticShow() {
+		ClearScreen.clsCmd();
+		for (String s : this.contain) {
+			if (s == null) {
+				System.out.println("");
+				continue;
+			}
+			System.out.println(s);
+		}
 		return true;
 	}
 
