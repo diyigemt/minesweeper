@@ -6,6 +6,14 @@ public class GridWindowInfo {
   private ArrayList<Integer> array = new ArrayList<Integer>();
   private int posY = -1;
 
+  public GridWindowInfo() {
+
+  }
+
+  public GridWindowInfo(int posY) {
+    this.posY = posY;
+  }
+
   public ArrayList<Integer> getArray() {
     return array;
   }

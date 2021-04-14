@@ -16,7 +16,7 @@ public class Window {
 //		this.height = Store.getConsoleHeight();
 //		this.width = Store.getConsoleWidth();
 		this.width = 120;
-		this.height = 50;
+		this.height = 10;
 		this.contain = new String[this.height];
 		this.nextPosY = this.startPosY = this.height / 2;
 	}
