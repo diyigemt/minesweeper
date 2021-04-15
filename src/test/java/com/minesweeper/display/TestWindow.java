@@ -1,3 +1,5 @@
+package com.minesweeper.display;
+
 import com.minesweeper.display.NaviWindow;
 import com.minesweeper.display.Window;
 import org.junit.Assert;

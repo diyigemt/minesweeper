@@ -1,3 +1,5 @@
+package com.minesweeper.display;
+
 import com.minesweeper.utils.Utils;
 import org.junit.Test;
 

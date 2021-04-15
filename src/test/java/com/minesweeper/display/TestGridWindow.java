@@ -1,3 +1,5 @@
+package com.minesweeper.display;
+
 import com.minesweeper.display.GridWindow;
 import org.junit.Assert;
 import org.junit.Test;

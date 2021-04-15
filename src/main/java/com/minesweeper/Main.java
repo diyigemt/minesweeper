@@ -3,6 +3,10 @@ package com.minesweeper;
 import com.minesweeper.display.GridWindow;
 import com.minesweeper.display.NaviWindow;
 import com.minesweeper.display.Window;
+import com.minesweeper.map.Grid;
+import com.minesweeper.map.LayBombToMap;
+import com.minesweeper.map.Map;
+import com.minesweeper.map.OpenGrid;
 import com.minesweeper.utils.ClearScreen;
 import com.minesweeper.utils.Utils;
 
@@ -15,7 +19,7 @@ public class Main {
 
   private static Window currentWindow;
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     boolean running = true;
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     NaviWindow mainWindow = new NaviWindow();
@@ -24,10 +28,20 @@ public class Main {
     mainWindow.setCursorText("生涯", 12);
     mainWindow.setCursorText("退出", 14);
     GridWindow gameWindow = new GridWindow();
-    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s", 5);
-    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s", 6);
-    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s", 7);
-    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s", 8);
+    Map map = new Map();
+    OpenGrid grid = new OpenGrid();
+    boolean isFirst = true;
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 5);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 6);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 7);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 8);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 9);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 10);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 11);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 12);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 13);
+    gameWindow.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 14);
+
     currentWindow = mainWindow;
     String select = null;
     currentWindow.staticShow();
@@ -76,26 +90,34 @@ public class Main {
           break;
         }
         case "": {
-          int pos = mainWindow.getCurrentCursorPos();
-          switch (pos) {
-            case 0: {
-              if (currentWindow == gameWindow) {
+          if (currentWindow instanceof NaviWindow) {
+            int pos = ((NaviWindow)currentWindow).getCurrentCursorPos();
+            switch (pos) {
+              case 0: {
+                currentWindow = gameWindow;
                 currentWindow.staticShow();
                 break;
               }
-              currentWindow = gameWindow;
-              currentWindow.staticShow();
-              break;
+              case 1:{
+                break;
+              }
+              case 2:{
+                running = false;
+                ClearScreen.clsCmd();
+                break;
+              }
+              default:
             }
-            case 1:{
-              break;
+          }
+          if (currentWindow instanceof GridWindow) {
+            int posX = ((GridWindow) currentWindow).getCurrentPosX();
+            int posY = ((GridWindow) currentWindow).getCurrentPosY();
+            if (isFirst) {
+              LayBombToMap.layBomb(map.map, posY, posX);
+              isFirst = false;
             }
-            case 2:{
-              running = false;
-              ClearScreen.clsCmd();
-              break;
-            }
-            default:
+            grid.openGrid(map.map, posY, posX);
+            ((GridWindow) currentWindow).setGameMap(map.map);
           }
         }
         default:

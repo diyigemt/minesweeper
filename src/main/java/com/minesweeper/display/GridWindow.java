@@ -1,5 +1,6 @@
 package com.minesweeper.display;
 
+import com.minesweeper.map.Grid;
 import com.minesweeper.utils.ClearScreen;
 import com.minesweeper.utils.Utils;
 
@@ -185,6 +186,32 @@ public class GridWindow extends Window {
 				}
 			}
 			System.out.println(s.replaceAll("%s", "  "));
+		}
+		return true;
+	}
+
+	public boolean setGameMap(Grid[][] map) {
+		int index = 5;
+		for (Grid[] ys: map) {
+			StringBuilder sb = new StringBuilder();
+			for (Grid x : ys) {
+				sb.append("%s ");
+				if (x.isExpendTag()) {
+					int i = x.getCountAround();
+					if (i == 9) {
+						sb.append("M %s ");
+					} else {
+						sb.append(i).append(" %s ");
+					}
+				} else if (x.isFlagTag()) {
+					sb.append("F %s ");
+				} else if (x.isMineTag()) {
+					sb.append("M %s ");
+				} else {
+					sb.append("X %s ");
+				}
+				this.setCursorText(sb.toString(), index++);
+			}
 		}
 		return true;
 	}
