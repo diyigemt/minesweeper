@@ -19,11 +19,18 @@ import org.junit.runners.Parameterized.Parameters;
  * @author duo
  *
  */
-//指定参数化运行器
+
+/**
+ * 指定参数化运行器
+ * @author duo
+ */
 @RunWith(Parameterized.class)
 public class GridTest {
 	private Grid grid;
-	//参数注入
+	/**
+	 * 参数注入
+	 */
+	
 	@Parameter
 	public int row;
 	@Parameter(1)
@@ -50,7 +57,10 @@ public class GridTest {
 	public void tearDown() throws Exception {
 		grid=null;
 	}
-	//准备测试数据
+	/**
+	 * 准备测试数据
+	 * @return
+	 */
 	@Parameters(name="{index}:[{0}][{1}]= [{2}][{3}]")
 	public static Collection <Object[]> testData() {
 		return Arrays.asList(new Object[][]{
@@ -63,14 +73,13 @@ public class GridTest {
 		});
 	}
 	
-	//执行测试
+	/**
+	 * 执行测试
+	 * @throws Exception 
+	 */
 	@Test
-	public void testGrid() {
-		try {
-			grid = new Grid(row,col);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void testGrid() throws Exception {
+		grid = new Grid(row,col);
 		assertEquals(grid.getRowx(), rowExpect);
 		assertEquals(grid.getColy(), colExpect);
 	}

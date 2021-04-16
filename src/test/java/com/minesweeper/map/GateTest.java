@@ -11,16 +11,16 @@ import org.junit.Test;
 public class GateTest {
 
 	@Test
-	public void mineSumCountTest() {
+	public void testMineSumCount() {
 		assertEquals(10, Gate.mineSumCount);
 	}
 	
 	@Test
-	public void sumRowTest() {
+	public void testSumRow() {
 		assertEquals(9, Gate.sumRow);
 	}
 	@Test
-	public void sumColTest() {
+	public void testSumCol() {
 		assertEquals(9, Gate.sumCol);
 	}
 

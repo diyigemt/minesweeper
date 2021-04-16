@@ -34,12 +34,16 @@ public class MapTest {
 	public void tearDown() throws Exception {
 		
 	}
-	//测试存在最小值
+	/**
+	 * 测试存在最小值
+	 */
 	@Test
 	public void testMapExistMin() {
 		assertNotNull(map.map[0][0]);
 	}
-	//测试存在最大值
+	/**
+	 * 测试存在最大值
+	 */
 	@Test
 	public void testMapExistMax() {
 		assertNotNull(map.map[Gate.sumRow-1][Gate.sumCol-1]);
