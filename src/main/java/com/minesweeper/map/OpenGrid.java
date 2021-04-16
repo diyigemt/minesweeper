@@ -42,6 +42,14 @@ public class OpenGrid {
             }
         }
     }
+    public void gameWin(Grid[][] map){
+        for (int i = 0; i < map.length; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (map[i][j].isMineTag() == true)
+                    map[i][j].setExpendTag(true);
+            }
+        }
+    }
     public void markGrid(Grid[][] map, int posX, int posY){
         if(map[posX][posY].isFlagTag()==false)
             map[posX][posY].setFlagTag(true);
@@ -83,6 +91,6 @@ public class OpenGrid {
             gameOver(map);
         }
         if(this.getExpandtags()+LayBombToMap.layBombCount==allGrids)
-            gameOver(map);
+            gameWin(map);
     }
 }
