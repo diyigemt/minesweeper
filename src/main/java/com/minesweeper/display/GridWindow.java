@@ -1,6 +1,8 @@
 package com.minesweeper.display;
 
+import com.minesweeper.Main;
 import com.minesweeper.map.Grid;
+import com.minesweeper.user.InputType;
 import com.minesweeper.utils.ClearScreen;
 import com.minesweeper.utils.Utils;
 
@@ -9,9 +11,11 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.minesweeper.utils.Constant.ERROR_INPUT;
+
 public class GridWindow extends Window {
-	private int cursorPosX = -1;
-	private int cursorPosY = -1;
+	protected int cursorPosX = -1;
+	protected int cursorPosY = -1;
 	private ArrayList<GridWindowInfo> availablePos = new ArrayList<GridWindowInfo>();
 
 	public GridWindow() {
@@ -186,32 +190,6 @@ public class GridWindow extends Window {
 				}
 			}
 			System.out.println(s.replaceAll("%s", "  "));
-		}
-		return true;
-	}
-
-	public boolean setGameMap(Grid[][] map) {
-		int index = 5;
-		for (Grid[] ys: map) {
-			StringBuilder sb = new StringBuilder();
-			for (Grid x : ys) {
-				sb.append("%s ");
-				if (x.isExpendTag()) {
-					int i = x.getCountAround();
-					if (x.isMineTag()) {
-						sb.append("M %s ");
-					} else if (i == 0) {
-						sb.append("0 %s ");
-					} else {
-						sb.append(i).append(" %s ");
-					}
-				} else if (x.isFlagTag()) {
-					sb.append("F %s ");
-				} else {
-					sb.append("X %s ");
-				}
-			}
-			this.setCursorText(sb.toString(), index++);
 		}
 		return true;
 	}

@@ -8,10 +8,10 @@ import java.util.Random;
  *
  */
 public class LayBombToMap {
-	static int layBombCount=0;
+	static int layBombCount = 0;
 	//布置雷的函数，在游戏开始后第一次点击方块时call
 	public static void layBomb(Grid[][] map,int row,int col) {
-		
+		layBombCount = 0;
 		Random random = new Random();
 		while (layBombCount < Gate.mineSumCount) {
 			int x = random.nextInt(Gate.sumRow);

@@ -1,8 +1,13 @@
 package com.minesweeper.display;
 
+import com.minesweeper.Main;
+import com.minesweeper.user.InputType;
+import com.minesweeper.utils.Constant;
 import com.minesweeper.utils.Utils;
 
 import java.util.ArrayList;
+
+import static com.minesweeper.utils.Constant.ERROR_INPUT;
 
 public class NaviWindow extends Window{
 	private ArrayList<Integer> availablePos = new ArrayList<Integer>();
@@ -106,6 +111,74 @@ public class NaviWindow extends Window{
 
 	public void resetCursor() {
 		if (this.availablePos.isEmpty()) return;
+		int index = this.cursorPos;
+		this.removeCursor(index);
+		int prevPos = this.availablePos.get(0);
+		String cursorText = Utils.getCursorWideText(this.width, this.contain[prevPos]);
+		this.setNativeText(cursorText, prevPos);
 		this.cursorPos = 0;
+	}
+
+	@Override
+	public void focus() {
+		this.isRunning = true;
+		this.staticShow();
+		while (this.isRunning) {
+			String nextInput = this.input.getNextInput(InputType.MENU);
+			if (nextInput.equals(ERROR_INPUT)) {
+				continue;
+			}
+			switch (nextInput) {
+				case "q": {
+					this.isRunning = Main.isRunning = false;
+					break;
+				}
+				case "s": {
+					this.next();
+					break;
+				}
+				case "w": {
+					this.prev();
+					break;
+				}
+				case "": {
+					int pos = this.cursorPos;
+					switch (Main.currentWindowName) {
+						case MAIN_MENU: {
+							if (pos == 0) {
+								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
+							} else if (pos == 1) {
+								Main.currentWindowName = Constant.CURRENT_WINDOW.RECORD;
+							} else if (pos == 2) {
+								Main.isRunning = false;
+							}
+							break;
+						}
+						case RECORD: {
+							if (pos == 0) {
+								// TODO delete record
+							} else if (pos == 1) {
+								Main.currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
+							}
+							break;
+						}
+						case PAUSE: {
+							if (pos == 0) {
+								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
+							}
+						}
+						case GAME_RESULT: {
+							if (pos == 0) {
+								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
+							} else if (pos == 1) {
+								Main.currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
+							}
+						}
+						default:
+					}
+					this.isRunning = false;
+				}
+			}
+		}
 	}
 }

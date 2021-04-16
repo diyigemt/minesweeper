@@ -1,5 +1,6 @@
 package com.minesweeper.display;
 
+import com.minesweeper.user.UserInput;
 import com.minesweeper.utils.ClearScreen;
 import com.minesweeper.utils.Store;
 import com.minesweeper.utils.Utils;
@@ -11,6 +12,8 @@ public class Window {
 	protected String[] prevContain; // 之前窗口内容
 	private int nextPosY; //下一行位置
 	private int startPosY = 0; //默认第一行的显示位置
+	protected boolean isRunning = true;
+	protected UserInput input = new UserInput();
 
 	public Window() {
 //		this.height = Store.getConsoleHeight();
@@ -172,6 +175,10 @@ public class Window {
 			System.out.println(s);
 		}
 		return true;
+	}
+
+	public void focus() {
+		this.isRunning = true;
 	}
 
 	public int getHeight() {

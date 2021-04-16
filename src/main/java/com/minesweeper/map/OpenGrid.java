@@ -69,7 +69,7 @@ public class OpenGrid {
             map[posX][posY].setExpendTag(true);
         else if (map[posX][posY].getCountAround() == 3)
             map[posX][posY].setExpendTag(true);
-        else if (map[posX][posY].isMineTag() == true) {
+        else if (map[posX][posY].isMineTag()) {
             gameOver(map);
         }
 
@@ -77,5 +77,9 @@ public class OpenGrid {
 
     public boolean isGameOver() {
         return this.isGameOver;
+    }
+
+    public void reset() {
+        this.isGameOver = false;
     }
 }
