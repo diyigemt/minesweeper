@@ -198,20 +198,20 @@ public class GridWindow extends Window {
 				sb.append("%s ");
 				if (x.isExpendTag()) {
 					int i = x.getCountAround();
-					if (i == 9) {
+					if (x.isMineTag()) {
 						sb.append("M %s ");
+					} else if (i == 0) {
+						sb.append("0 %s ");
 					} else {
 						sb.append(i).append(" %s ");
 					}
 				} else if (x.isFlagTag()) {
 					sb.append("F %s ");
-				} else if (x.isMineTag()) {
-					sb.append("M %s ");
 				} else {
 					sb.append("X %s ");
 				}
-				this.setCursorText(sb.toString(), index++);
 			}
+			this.setCursorText(sb.toString(), index++);
 		}
 		return true;
 	}

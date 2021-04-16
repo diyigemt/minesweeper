@@ -52,7 +52,8 @@ public class OpenGrid {
                      * 判断当前坐标对象对应的格子对象内容是否为空格，
                      * 如果是空格实现递归调用，如果是数字就开启当前格子
                      */
-                    if (map[point.x][point.y].getCountAround() == 0 && !map[point.x][point.y].isExpendTag()) {
+                    int count = map[point.x][point.y].getCountAround();
+                    if (count >= 0 && count != 9 && !map[point.x][point.y].isExpendTag()) {
                         //当前格子为空格的情况
                         this.openGrid(map, point.x, point.y);
 

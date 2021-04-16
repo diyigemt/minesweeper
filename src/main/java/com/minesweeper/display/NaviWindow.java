@@ -99,4 +99,13 @@ public class NaviWindow extends Window{
 	public int getCurrentCursorPos() {
 		return this.cursorPos;
 	}
+
+	public void setCursorPos(int pos) {
+		this.cursorPos = pos;
+	}
+
+	public void resetCursor() {
+		if (this.availablePos.isEmpty()) return;
+		this.cursorPos = 0;
+	}
 }
