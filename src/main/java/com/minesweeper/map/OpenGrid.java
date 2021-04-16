@@ -3,6 +3,16 @@ package com.minesweeper.map;
 import java.awt.*;
 
 public class OpenGrid {
+    static int allGrids=81;
+    public int getExpandtags() {
+        return expandtags;
+    }
+
+    public void setExpandtags(int expandtags) {
+        this.expandtags = expandtags;
+    }
+
+    private int expandtags=0;
     public Point[] getPoint(int posX,int posY) {//超过一个以上的返回要用数组
         //定义一个坐标对象数组
         Point[] point=new Point[8];
@@ -39,6 +49,8 @@ public class OpenGrid {
             map[posX][posY].setFlagTag(false);
     }
     public void openGrid(Grid[][] map, int posX, int posY) {
+        this.setExpandtags(this.getExpandtags()+1);
+
         if (map[posX][posY].getCountAround() == 0) {
             map[posX][posY].setExpendTag(true);
             Point[] p = this.getPoint(posX, posY);
@@ -70,6 +82,7 @@ public class OpenGrid {
         else if (map[posX][posY].isMineTag() == true) {
             gameOver(map);
         }
-
+        if(this.getExpandtags()+LayBombToMap.layBombCount==allGrids)
+            gameOver(map);
     }
 }
