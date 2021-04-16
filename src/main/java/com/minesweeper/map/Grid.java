@@ -6,12 +6,17 @@ package com.minesweeper.map;
  */
 
 public class Grid {
-	private boolean mineTag=false;	//是否是雷标记
-	private boolean expendTag=false;	//是否翻开
-	private boolean flagTag=false;	//是否插旗
+	/**是否是雷标记*/
+	private boolean mineTag=false;	
+	/**是否翻开*/
+	private boolean expendTag=false;
+	/**是否插旗*/
+	private boolean flagTag=false;	
+	
 	private int rowx;
 	private int coly;
-	private int countAround;	//周围雷数
+	/**周围雷数*/
+	private int countAround;	
 	
 	public Grid() {
 		
@@ -19,13 +24,15 @@ public class Grid {
 	public Grid(int x, int y) throws Exception {
 		this.setRowx(x);
 		this.setColy(y);
-		if(x>=Gate.sumRow)
+		if(x>=Gate.sumRow) {
 			this.setRowx(-1);
-		if(y>=Gate.sumCol)
-			this.setColy(-1);		
-		if(x<0||y<0)
+		}
+		if(y>=Gate.sumCol) {
+			this.setColy(-1);	
+		}
+		if(x<0||y<0) {
 			throw new Exception("行列数不得为负数");
-			
+		}
 	}
 
 	public boolean isMineTag() {
