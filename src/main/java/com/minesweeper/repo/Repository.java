@@ -12,9 +12,13 @@ import java.nio.charset.StandardCharsets;
 
 public class Repository implements IRepo {
     private static Repository INSTANCE;
-    public static final String HISTORY_FILE_NAME = "src/history.txt";
-    public static final String SUCCESS_HISTORY_FILE_NAME = "src/success_history.txt";
-    public static final String MAP_FILE_NAME = "src/lastMap.txt";
+    public static final String HISTORY_FILE_NAME = "history.txt";
+    public static final String SUCCESS_HISTORY_FILE_NAME = "success_history.txt";
+    public static final String MAP_FILE_NAME = "lastMap.txt";
+
+    private static InputStream getFilePath(String fileName) {
+        return Repository.class.getResourceAsStream("/resources/" + fileName);
+    }
 
     public static Repository getInstance() {
         if (INSTANCE == null) {
@@ -39,7 +43,7 @@ public class Repository implements IRepo {
     @Override
     public boolean readContext(Map gameMap) {
         try {
-            ObjectInputStream stream = new ObjectInputStream(new FileInputStream(MAP_FILE_NAME));
+            ObjectInputStream stream = new ObjectInputStream(getFilePath(MAP_FILE_NAME));
             gameMap.map = (Grid[][]) stream.readObject();
             return true;
         } catch (Exception e) {
@@ -111,7 +115,7 @@ public class Repository implements IRepo {
     public int readSuccessHistory() {
         int result = -1;
         try {
-            result = Integer.parseInt(new BufferedReader(new FileReader(SUCCESS_HISTORY_FILE_NAME)).readLine());
+            result = Integer.parseInt(new BufferedReader(new InputStreamReader(getFilePath(MAP_FILE_NAME))).readLine());
         } catch (Exception e) {
             e.printStackTrace();
         }
