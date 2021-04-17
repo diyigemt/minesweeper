@@ -102,6 +102,7 @@ public class GameWindow extends GridWindow {
 				case "p": {
 					Main.currentWindowName = Constant.CURRENT_WINDOW.PAUSE;
 					this.isRunning = false;
+					break;
 				}
 				case "": {
 					int posX = this.cursorPosX;

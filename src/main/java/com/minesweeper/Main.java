@@ -18,6 +18,7 @@ public class Main {
 	public static Constant.CURRENT_WINDOW currentWindowName;
 	public static boolean isWin = false;
 	public static boolean isRunning = true;
+	public static boolean isPause = false;
 
 	public static void main(String[] args) throws Exception {
 		currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
@@ -30,6 +31,10 @@ public class Main {
 		gameOverWindow.setText("Game Over.", 5);
 		gameOverWindow.setCursorText("新游戏", 10);
 		gameOverWindow.setCursorText("返回主菜单", 12);
+		NaviWindow gamePauseWindow = new NaviWindow();
+		gamePauseWindow.setText("游戏暂停", 5);
+		gamePauseWindow.setCursorText("恢复", 10);
+		gamePauseWindow.setCursorText("返回主菜单", 12);
 		GameWindow gameWindow = new GameWindow();
 		currentWindow = mainWindow;
 		while (isRunning) {
@@ -41,7 +46,9 @@ public class Main {
 					currentWindow.staticShow();
 					break;
 				} case GAME: {
-					gameWindow.init();
+					if (!isPause) {
+						gameWindow.init();
+					}
 					currentWindow = gameWindow;
 					break;
 				} case GAME_RESULT: {
@@ -52,95 +59,12 @@ public class Main {
 					gameOverWindow.resetCursor();
 					currentWindow = gameOverWindow;
 					break;
+				} case PAUSE: {
+					gamePauseWindow.resetCursor();
+					currentWindow = gamePauseWindow;
 				}
 			}
 		}
-//		while (isRunning) {
-//			try {
-//				select = reader.readLine();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			}
-//			if (select == null) continue;
-//			switch (select) {
-//				case "q": {
-//					isRunning = false;
-//					break;
-//				}
-//				case "s":
-//				case "S": {
-//					if (currentWindow instanceof NaviWindow) {
-//						((NaviWindow) currentWindow).next();
-//					} else if (currentWindow instanceof GridWindow) {
-//						((GridWindow) currentWindow).next();
-//					}
-//					break;
-//				}
-//				case "w":
-//				case "W": {
-//					if (currentWindow instanceof NaviWindow) {
-//						((NaviWindow) currentWindow).prev();
-//					} else if (currentWindow instanceof GridWindow) {
-//						((GridWindow) currentWindow).prev();
-//					}
-//					break;
-//				}
-//				case "a":
-//				case "A": {
-//					if (currentWindow instanceof GridWindow) {
-//						((GridWindow) currentWindow).left();
-//					}
-//					break;
-//				}
-//				case "d":
-//				case "D": {
-//					if (currentWindow instanceof GridWindow) {
-//						((GridWindow) currentWindow).right();
-//					}
-//					break;
-//				}
-//				case "": {
-//					if (currentWindow instanceof NaviWindow) {
-//						int pos = ((NaviWindow) currentWindow).getCurrentCursorPos();
-//						switch (pos) {
-//							case 0: {
-//								if (currentWindow == mainWindow) {
-//									currentWindow = gameWindow;
-//								}
-//								break;
-//							}
-//							case 1: {
-//								if (currentWindow == gameOverWindow) {
-//									currentWindow = mainWindow;
-//									mainWindow.resetCursor();
-//								}
-//								break;
-//							}
-//							case 2: {
-//								isRunning = false;
-//								ClearScreen.clsCmd();
-//								break;
-//							}
-//							default:
-//						}
-//					} else if (currentWindow instanceof GridWindow) {
-//						int posX = ((GridWindow) currentWindow).getCurrentPosX();
-//						int posY = ((GridWindow) currentWindow).getCurrentPosY();
-//						if (isFirst) {
-//							LayBombToMap.layBomb(map.map, posY, posX);
-//							isFirst = false;
-//						}
-//						grid.openGrid(map.map, posY, posX);
-//						((GameWindow) currentWindow).setGameMap(map.map);
-//						if (grid.isGameOver()) {
-//							currentWindow = gameOverWindow;
-//						}
-//					}
-//				}
-//				default:
-//					currentWindow.staticShow();
-//			}
-//		}
 		ClearScreen.clsCmd();
 	}
 }
