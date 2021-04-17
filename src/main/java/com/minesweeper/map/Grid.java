@@ -1,13 +1,17 @@
 package com.minesweeper.map;
+<<<<<<< HEAD
 
 import java.io.Serializable;
 
+=======
+>>>>>>> origin/main
 /**
  * 地图方块定义
  * @author duo
  * 
  */
 
+<<<<<<< HEAD
 public class Grid implements Serializable {
 	private boolean mineTag=false;	//是否是雷标记
 	private boolean expendTag=false;	//是否翻开
@@ -15,10 +19,25 @@ public class Grid implements Serializable {
 	private int rowx;
 	private int coly;
 	private int countAround;	//周围雷数
+=======
+public class Grid {
+	/**是否是雷标记*/
+	private boolean mineTag=false;	
+	/**是否翻开*/
+	private boolean expendTag=false;
+	/**是否插旗*/
+	private boolean flagTag=false;	
+	
+	private int rowx;
+	private int coly;
+	/**周围雷数*/
+	private int countAround;	
+>>>>>>> origin/main
 	
 	public Grid() {
 		
 	}
+<<<<<<< HEAD
 
 	public Grid(int x, int y) throws Exception {
 		this.setRowx(x);
@@ -40,6 +59,20 @@ public class Grid implements Serializable {
 				" " + rowx +
 				" " + coly +
 				" " + countAround;
+=======
+	public Grid(int x, int y) throws Exception {
+		this.setRowx(x);
+		this.setColy(y);
+		if(x>=Gate.sumRow) {
+			this.setRowx(-1);
+		}
+		if(y>=Gate.sumCol) {
+			this.setColy(-1);	
+		}
+		if(x<0||y<0) {
+			throw new Exception("行列数不得为负数");
+		}
+>>>>>>> origin/main
 	}
 
 	public boolean isMineTag() {
