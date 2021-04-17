@@ -2,6 +2,14 @@ package com.minesweeper.map;
 
 public class OpenGrid {
     private boolean isGameOver = false;
+    private int expandTags=0;
+    public int getExpandTags() {
+        return expandTags;
+    }
+
+    public void setExpandTags(int expandTags) {
+        this.expandTags = expandTags;
+    }
 
     public Point[] getPoint(int posX,int posY) {//超过一个以上的返回要用数组
         //定义一个坐标对象数组
@@ -33,6 +41,15 @@ public class OpenGrid {
         }
         this.isGameOver = true;
     }
+    public void gameWin(Grid[][] map){
+        for (Grid[] grids : map) {
+            for (Grid grid : grids) {
+                if (grid.isMineTag())
+                    grid.setExpendTag(true);
+            }
+        }
+        this.isGameOver = true;
+    }
     public void markGrid(Grid[][] map, int posX, int posY){
         if(!map[posX][posY].isFlagTag())
             map[posX][posY].setFlagTag(true);
@@ -40,6 +57,7 @@ public class OpenGrid {
             map[posX][posY].setFlagTag(false);
     }
     public void openGrid(Grid[][] map, int posX, int posY) {
+        this.setExpandTags(this.getExpandTags()+1);
         if (map[posX][posY].getCountAround() == 0) {
             map[posX][posY].setExpendTag(true);
             Point[] p = this.getPoint(posX, posY);
@@ -72,7 +90,8 @@ public class OpenGrid {
         else if (map[posX][posY].isMineTag()) {
             gameOver(map);
         }
-
+        if(this.getExpandTags()+Gate.mineSumCount==Gate.sumRow*Gate.sumCol)
+            gameWin(map);
     }
 
     public boolean isGameOver() {
