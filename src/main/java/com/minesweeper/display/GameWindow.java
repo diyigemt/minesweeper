@@ -18,6 +18,7 @@ public class GameWindow extends GridWindow {
 
 	public GameWindow() throws Exception {
 		init();
+		this.setText("请输入 w a s d 进行光标移动, p 暂停游戏, m 标记格子, enter 进行输入确认和翻开格子, q 退出程序", 0, 40);
 	}
 
 	public void init() throws Exception {

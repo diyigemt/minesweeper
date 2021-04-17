@@ -17,6 +17,7 @@ public class NaviWindow extends Window{
 	private int cursorPos = -1;
 	public NaviWindow() {
 		super();
+		this.setText("请输入 s w 进行菜单导航, enter 进行输入确认和进入菜单项, q 退出程序", 0, 40);
 	}
 	public NaviWindow(int startPosY) {
 		super(startPosY);
