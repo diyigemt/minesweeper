@@ -164,10 +164,16 @@ public class NaviWindow extends Window{
 						}
 						case PAUSE: {
 							if (pos == 0) {
+								Main.isPause = true;
 								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
+							} else if (pos == 1) {
+								Main.isPause = false;
+								Main.currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
 							}
+							break;
 						}
 						case GAME_RESULT: {
+							Main.isPause = false;
 							if (pos == 0) {
 								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
 							} else if (pos == 1) {
