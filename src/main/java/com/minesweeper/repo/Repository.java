@@ -39,7 +39,7 @@ public class Repository implements IRepo {
     @Override
     public boolean readContext(Map gameMap) {
         try {
-            ObjectInputStream stream = new ObjectInputStream stream(new FileInputStream(MAP_FILE_NAME));
+            ObjectInputStream stream = new ObjectInputStream(new FileInputStream(MAP_FILE_NAME));
             gameMap.map = (Grid[][]) stream.readObject();
             return true;
         } catch (Exception e) {

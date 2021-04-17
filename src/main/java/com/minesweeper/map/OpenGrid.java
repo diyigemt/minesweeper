@@ -89,13 +89,9 @@ public class OpenGrid {
                     }
                 }
             }
-        } else if (map[posX][posY].getCountAround() == 1) {
+        } else if (map[posX][posY].getCountAround() < 9) {
             map[posX][posY].setExpendTag(true);
-        } else if (map[posX][posY].getCountAround() == 2) {
-            map[posX][posY].setExpendTag(true);
-        } else if (map[posX][posY].getCountAround() == 3) {
-            map[posX][posY].setExpendTag(true);
-        } else if (map[posX][posY].isMineTag()) {
+        }  else if (map[posX][posY].isMineTag()) {
             this.gameLose(map);
         }
         if(this.getExpandTags()+Gate.mineSumCount==Gate.sumCol*Gate.sumRow)
