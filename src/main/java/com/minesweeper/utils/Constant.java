@@ -2,6 +2,9 @@ package com.minesweeper.utils;
 
 import java.util.ArrayList;
 
+/**
+ * @author diyigemt
+ */
 public class Constant {
 	public static final ArrayList<String> MENU_LIST = new ArrayList<String>();
 	public static final ArrayList<String> GAME_LIST = new ArrayList<String>();

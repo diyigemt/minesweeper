@@ -11,17 +11,27 @@ import com.minesweeper.utils.Store;
 
 import static com.minesweeper.utils.Constant.ERROR_INPUT;
 
+/**
+ * 游戏主窗体
+ * @author diyigemt
+ */
 public class GameWindow extends GridWindow {
 	private boolean isFirst;
 	private Map map;
 	private OpenGrid grid = new OpenGrid();
 
-	public GameWindow() throws Exception {
+	/**
+	 * 默认构造函数 添加操作提示
+	 */
+	public GameWindow() {
 		init();
 		this.setText("请输入 w a s d 进行光标移动, p 暂停游戏, m 标记格子, enter 进行输入确认和翻开格子, q 退出程序", 0, 40);
 	}
 
-	public void init() throws Exception {
+	/**
+	 * 初始化游戏地图 假的 因为地图在第一次点击的时候才会初始化
+	 */
+	public void init() {
 		this.isFirst = true;
 		this.map = new Map();
 		this.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 5);
@@ -37,6 +47,11 @@ public class GameWindow extends GridWindow {
 		this.cursorPosY = 0;
 	}
 
+	/**
+	 * 将游戏地图转换为窗体内容
+	 * @param map 游戏地图
+	 * @return 是否成功
+	 */
 	public boolean setGameMap(Grid[][] map) {
 		int index = 5;
 		for (Grid[] ys: map) {
@@ -64,6 +79,9 @@ public class GameWindow extends GridWindow {
 		return true;
 	}
 
+	/**
+	 * 获取焦点 接管用户输入 同时进行游戏逻辑的判断
+	 */
 	@Override
 	public void focus() {
 		this.isRunning = true;

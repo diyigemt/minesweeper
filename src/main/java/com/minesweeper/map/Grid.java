@@ -35,7 +35,7 @@ public class Grid implements Serializable {
 				" " + coly +
 				" " + countAround;
 	}
-	public Grid( int x, int y) throws Exception {
+	public Grid( int x, int y) {
 			this.setRowx(x);
 			this.setColy(y);
 			if (x >= Gate.sumRow) {
@@ -43,9 +43,6 @@ public class Grid implements Serializable {
 			}
 			if (y >= Gate.sumCol) {
 				this.setColy(-1);
-			}
-			if (x < 0 || y < 0) {
-				throw new Exception("行列数不得为负数");
 			}
 		}
 

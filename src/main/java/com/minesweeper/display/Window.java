@@ -165,6 +165,10 @@ public class Window {
 		return true;
 	}
 
+	/**
+	 * 打印屏幕内容且不清空屏幕
+	 * @return 是否成功
+	 */
 	public boolean staticShow() {
 		ClearScreen.clsCmd();
 		for (String s : this.contain) {
@@ -177,14 +181,25 @@ public class Window {
 		return true;
 	}
 
+	/**
+	 * 获取焦点
+	 */
 	public void focus() {
 		this.isRunning = true;
 	}
 
+	/**
+	 * 获取窗口高度
+	 * @return 窗口高度
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * 获取窗口宽度
+	 * @return 窗口宽度
+	 */
 	public int getWidth() {
 		return width;
 	}

@@ -4,6 +4,9 @@ import com.minesweeper.map.Map;
 
 import java.util.HashMap;
 
+/**
+ * @author diyigemt
+ */
 public class Store {
 	private static final HashMap<String, Object> map = new HashMap<String, Object>();
 	private static final String CONSOLE_HEIGHT = "console_height";

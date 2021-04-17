@@ -1,22 +1,20 @@
 package com.minesweeper.display;
 
-import com.minesweeper.Main;
-import com.minesweeper.map.Grid;
-import com.minesweeper.user.InputType;
 import com.minesweeper.utils.ClearScreen;
-import com.minesweeper.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.minesweeper.utils.Constant.ERROR_INPUT;
 
+/**
+ * 网格型窗体
+ * @author diyigemt
+ */
 public class GridWindow extends Window {
-	protected int cursorPosX = -1;
-	protected int cursorPosY = -1;
-	private ArrayList<GridWindowInfo> availablePos = new ArrayList<GridWindowInfo>();
+	protected int cursorPosX = -1; // 光标x坐标
+	protected int cursorPosY = -1; // 光标y坐标
+	private ArrayList<GridWindowInfo> availablePos = new ArrayList<GridWindowInfo>(); // 可用的菜单项坐标列表
 
 	public GridWindow() {
 		super();
@@ -30,6 +28,13 @@ public class GridWindow extends Window {
 		return this.cursorPosY;
 	}
 
+	/**
+	 * 添加一个可用的光标菜单项
+	 * << text中必须将可用的指针位置用 '%s %s' 包裹起来 显示时会用指针代替'%s' >>
+	 * @param text 菜单项
+	 * @param posY 垂直位置
+	 * @return 是否添加成功
+	 */
 	public boolean setCursorText(String text, int posY) {
 		if (!this.checkPos(posY)) return false;
 		int posCount = getPosXCount(text);
@@ -53,10 +58,11 @@ public class GridWindow extends Window {
 		return true;
 	}
 
-//  public boolean setCursorText(String text, int posY, int posX, int posCount) {
-//
-//  }
-
+	/**
+	 * 计算可用的x方向菜单数量
+	 * @param text 菜单内容
+	 * @return 可用的数量
+	 */
 	private int getPosXCount(String text) {
 		Matcher matcher = Pattern.compile("%s").matcher(text);
 		int res = 0;
@@ -66,6 +72,11 @@ public class GridWindow extends Window {
 		return res / 2;
 	}
 
+	/**
+	 * 根据菜单项内容获取全部的可用x方向菜单位置
+	 * @param text 菜单内容
+	 * @return 可用x方向菜单位置
+	 */
 	private ArrayList<Integer> findAllPosX(String text) {
 		if (text == null || text.equals("")) return null;
 		ArrayList<Integer> res = new ArrayList<Integer>();
@@ -78,6 +89,11 @@ public class GridWindow extends Window {
 		return res;
 	}
 
+	/**
+	 * 获取菜单项index对应的屏幕位置
+	 * @param posY 菜单项index
+	 * @return 屏幕位置
+	 */
 	private int getPosYInfoIndex(int posY) {
 		int res = -1;
 		for (int i = 0; i < this.availablePos.size(); i++) {
@@ -89,6 +105,11 @@ public class GridWindow extends Window {
 		return res;
 	}
 
+	/**
+	 * 排序插入 菜单项的位置正确
+	 * @param list 可用x方向菜单位置
+	 * @param posY 菜单y位置
+	 */
 	private void sortAdd(ArrayList<Integer> list, int posY) {
 		int index = getPosYInfoIndex(posY);
 		if (index != -1) {
@@ -112,56 +133,99 @@ public class GridWindow extends Window {
 		}
 	}
 
+	/**
+	 * 检查菜单位置是否合法
+	 * @param posY y位置
+	 * @param posX x位置
+	 * @return 是否合法
+	 */
 	private boolean checkPos(int posY, int posX) {
 		return posY + 1 <= height && posX + 1 <= width;
 	}
 
+	/**
+	 * 移动光标到下一个位置
+	 * @return 是否移动成功
+	 */
 	public boolean next() {
 		if (!hasNext()) return false;
 		this.cursorPosY++;
 		return this.staticShow();
 	}
 
+	/**
+	 * 移动光标到前一个位置
+	 * @return 是否移动成功
+	 */
 	public boolean prev() {
 		if (!hasPrev()) return false;
 		this.cursorPosY--;
 		return this.staticShow();
 	}
 
+	/**
+	 * 移动光标到右一个位置
+	 * @return 是否移动成功
+	 */
 	public boolean right() {
 		if (!hasRight()) return false;
 		this.cursorPosX++;
 		return this.staticShow();
 	}
 
+	/**
+	 * 移动光标到左一个位置
+	 * @return 是否移动成功
+	 */
 	public boolean left() {
 		if (!hasLeft()) return false;
 		this.cursorPosX--;
 		return this.staticShow();
 	}
 
+	/**
+	 * 判断光标是否还可以往下移动
+	 * @return 是否可以移动
+	 */
 	public boolean hasNext() {
 		if (this.availablePos.isEmpty()) return false;
 		return this.cursorPosY < this.availablePos.size() - 1;
 	}
 
+	/**
+	 * 判断光标是否还可以往前移动
+	 * @return 是否可以移动
+	 */
 	public boolean hasPrev() {
 		if (this.availablePos.isEmpty()) return false;
 		return this.cursorPosY > 0;
 	}
 
+	/**
+	 * 判断光标是否还可以往右移动
+	 * @return 是否可以移动
+	 */
 	public boolean hasRight() {
 		ArrayList<Integer> array = this.availablePos.get(this.cursorPosY).getArray();
 		if (array.isEmpty()) return false;
 		return this.cursorPosX < array.size() - 1;
 	}
 
+	/**
+	 * 判断光标是否还可以往左移动
+	 * @return 是否可以移动
+	 */
 	public boolean hasLeft() {
 		ArrayList<Integer> array = this.availablePos.get(this.cursorPosY).getArray();
 		if (array.isEmpty()) return false;
 		return this.cursorPosX > 0;
 	}
 
+	/**
+	 * 打印屏幕内容且不清空屏幕
+	 * 同时根据光标位置打印光标
+	 * @return 是否成功
+	 */
 	@Override
 	public boolean staticShow() {
 		ClearScreen.clsCmd();

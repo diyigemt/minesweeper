@@ -13,8 +13,9 @@ import java.util.ArrayList;
 import static com.minesweeper.utils.Constant.ERROR_INPUT;
 
 public class NaviWindow extends Window{
-	private ArrayList<Integer> availablePos = new ArrayList<Integer>();
-	private int cursorPos = -1;
+	private ArrayList<Integer> availablePos = new ArrayList<Integer>(); // 存储属于光标项目的位置
+	private int cursorPos = -1; // 当前光标位置
+	// 创建默认窗体 提供操作提示
 	public NaviWindow() {
 		super();
 		this.setText("请输入 s w 进行菜单导航, enter 进行输入确认和进入菜单项, q 退出程序", 0, 40);
@@ -23,14 +24,26 @@ public class NaviWindow extends Window{
 		super(startPosY);
 	}
 
+	/**
+	 * 获取光标位置
+	 * @return 光标位置
+	 */
 	public ArrayList<Integer> getAvailablePos() {
 		return availablePos;
 	}
 
+	/**
+	 * 设置光标位置
+	 * @param availablePos 可用的光标位置
+	 */
 	public void setAvailablePos(ArrayList<Integer> availablePos) {
 		this.availablePos = availablePos;
 	}
 
+	/**
+	 * 添加一个可用的光标位置
+	 * @param pos 可用的光标位置
+	 */
 	public boolean addAvailablePos(int pos) {
 		String tmp = this.contain[pos];
 		if (tmp == null) return false;
@@ -38,6 +51,10 @@ public class NaviWindow extends Window{
 		return true;
 	}
 
+	/**
+	 * 插入排序 保证光标的正确性
+	 * @param data 插入的posY位置
+	 */
 	private void sortAdd(int data) {
 		if (this.availablePos.isEmpty()) {
 			this.availablePos.add(data);
@@ -57,6 +74,10 @@ public class NaviWindow extends Window{
 		this.availablePos.add(data);
 	}
 
+	/**
+	 * 清除一个位置的光标效果
+	 * @param pos 要清除的位置
+	 */
 	public void removeCursor(int pos) {
 		int index = this.availablePos.get(pos);
 		String tmp = this.contain[index];
@@ -65,6 +86,12 @@ public class NaviWindow extends Window{
 		this.contain[index] = tmp;
 	}
 
+	/**
+	 * 添加一个可用的光标菜单项
+	 * @param target 菜单项
+	 * @param posY 垂直位置
+	 * @return 是否添加成功
+	 */
 	public boolean setCursorText(String target, int posY) {
 		if (!this.checkPos(posY)) return false;
 		if (this.cursorPos == -1) {
@@ -78,6 +105,10 @@ public class NaviWindow extends Window{
 		return true;
 	}
 
+	/**
+	 * 移动光标到下一个位置
+	 * @return 是否移动成功
+	 */
 	public boolean next() {
 		if (!hasNext()) return false;
 		int index = this.cursorPos;
@@ -89,6 +120,10 @@ public class NaviWindow extends Window{
 		return this.staticShow();
 	}
 
+	/**
+	 * 移动光标到前一个位置
+	 * @return 是否移动成功
+	 */
 	public boolean prev() {
 		if (!hasPrev()) return false;
 		int index = this.cursorPos;
@@ -100,24 +135,43 @@ public class NaviWindow extends Window{
 		return this.staticShow();
 	}
 
+	/**
+	 * 判断光标是否还可以往下移动
+	 * @return 是否可以移动
+	 */
 	public boolean hasNext() {
 		if (this.availablePos.isEmpty()) return false;
 		return this.cursorPos < this.availablePos.size() - 1;
 	}
 
+	/**
+	 * 判断光标是否还可以往前移动
+	 * @return 是否可以移动
+	 */
 	public boolean hasPrev() {
 		if (this.availablePos.isEmpty()) return false;
 		return this.cursorPos > 0;
 	}
 
+	/**
+	 * 获取当前光标位置
+	 * @return 当前光标位置
+	 */
 	public int getCurrentCursorPos() {
 		return this.cursorPos;
 	}
 
+	/**
+	 * 设置光标位置
+	 * @param pos 设置值
+	 */
 	public void setCursorPos(int pos) {
 		this.cursorPos = pos;
 	}
 
+	/**
+	 * 重置光标位置到第一个菜单项
+	 */
 	public void resetCursor() {
 		if (this.availablePos.isEmpty()) return;
 		int index = this.cursorPos;
@@ -128,6 +182,9 @@ public class NaviWindow extends Window{
 		this.cursorPos = 0;
 	}
 
+	/**
+	 * 获取焦点 接管用户输入
+	 */
 	@Override
 	public void focus() {
 		this.isRunning = true;

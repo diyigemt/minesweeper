@@ -2,6 +2,9 @@ package com.minesweeper.utils;
 
 import java.io.IOException;
 
+/**
+ * @author diyigemt
+ */
 public class ClearScreen {
 
 	public static void clsCmd() {
