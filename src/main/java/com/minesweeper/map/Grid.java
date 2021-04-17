@@ -1,11 +1,14 @@
 package com.minesweeper.map;
+
+import java.io.Serializable;
+
 /**
  * 地图方块定义
  * @author duo
  * 
  */
 
-public class Grid {
+public class Grid implements Serializable {
 	private boolean mineTag=false;	//是否是雷标记
 	private boolean expendTag=false;	//是否翻开
 	private boolean flagTag=false;	//是否插旗
@@ -27,6 +30,16 @@ public class Grid {
 		if(x<0||y<0)
 			throw new Exception("行列数不得为负数");
 			
+	}
+
+	@Override
+	public String toString() {
+		return  mineTag +
+				" " + expendTag +
+				" " + flagTag +
+				" " + rowx +
+				" " + coly +
+				" " + countAround;
 	}
 
 	public boolean isMineTag() {
