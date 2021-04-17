@@ -135,7 +135,7 @@ public class Repository implements IRepo {
     }
 
     // 测试
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println(getInstance().updateAllHistory());
         System.out.println(getInstance().updateHistory());
         System.out.println(getInstance().readAllHistory());

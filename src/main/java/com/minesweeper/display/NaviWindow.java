@@ -1,8 +1,11 @@
 package com.minesweeper.display;
 
 import com.minesweeper.Main;
+import com.minesweeper.map.Map;
+import com.minesweeper.repo.Repository;
 import com.minesweeper.user.InputType;
 import com.minesweeper.utils.Constant;
+import com.minesweeper.utils.Store;
 import com.minesweeper.utils.Utils;
 
 import java.util.ArrayList;
@@ -39,6 +42,11 @@ public class NaviWindow extends Window{
 			this.availablePos.add(data);
 			return;
 		}
+		if (this.availablePos.contains(data)) return;
+		if (this.availablePos.get(0) > data) {
+			this.availablePos.add(0, data);
+			return;
+		}
 		for (int i = 0; i < this.availablePos.size() - 1; i++) {
 			if (this.availablePos.get(i) < data && this.availablePos.get(i + 1) > data) {
 				this.availablePos.add(i, data);
@@ -48,7 +56,7 @@ public class NaviWindow extends Window{
 		this.availablePos.add(data);
 	}
 
-	private void removeCursor(int pos) {
+	public void removeCursor(int pos) {
 		int index = this.availablePos.get(pos);
 		String tmp = this.contain[index];
 		if (tmp == null) return;
@@ -145,18 +153,24 @@ public class NaviWindow extends Window{
 					int pos = this.cursorPos;
 					switch (Main.currentWindowName) {
 						case MAIN_MENU: {
-							if (pos == 0) {
+							int index = pos;
+							Map gameMap = Store.getGameMap();
+							if (gameMap != null) {
+								index = index - 1;
 								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
-							} else if (pos == 1) {
+							}
+							if (index == 0) {
+								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
+							} else if (index == 1) {
 								Main.currentWindowName = Constant.CURRENT_WINDOW.RECORD;
-							} else if (pos == 2) {
+							} else if (index == 2) {
 								Main.isRunning = false;
 							}
 							break;
 						}
 						case RECORD: {
 							if (pos == 0) {
-								// TODO delete record
+								Repository.getInstance().clearHistory();
 							} else if (pos == 1) {
 								Main.currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
 							}
@@ -168,6 +182,7 @@ public class NaviWindow extends Window{
 								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
 							} else if (pos == 1) {
 								Main.isPause = false;
+								Repository.getInstance().saveGameContext(Store.getGameMap());
 								Main.currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
 							}
 							break;

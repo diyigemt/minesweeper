@@ -37,7 +37,7 @@ public class OpenGrid {
                 }
             }
         }
-
+        this.isGameWin = false;
         this.isGameOver = true;
     }
     public void gameWin(Grid[][] map) {
@@ -56,6 +56,7 @@ public class OpenGrid {
                 }
             }
         }
+        this.isGameOver = true;
         this.isGameWin = true;
     }
     public void markGrid(Grid[][] map, int posX, int posY){

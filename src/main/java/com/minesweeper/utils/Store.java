@@ -1,11 +1,14 @@
 package com.minesweeper.utils;
 
+import com.minesweeper.map.Map;
+
 import java.util.HashMap;
 
 public class Store {
 	private static final HashMap<String, Object> map = new HashMap<String, Object>();
 	private static final String CONSOLE_HEIGHT = "console_height";
 	private static final String CONSOLE_WIDTH = "console_width";
+	private static final String CURRENT_GAME_MAP = "console_width";
 
 	public static void set(String key, Object o) {
 		map.put(key, o);
@@ -26,5 +29,13 @@ public class Store {
 
 	public static int getConsoleWidth() {
 		return (int) get(CONSOLE_WIDTH);
+	}
+
+	public static void setGameMap(Map map) {
+		set(CURRENT_GAME_MAP, map);
+	}
+
+	public static Map getGameMap() {
+		return (Map) get(CURRENT_GAME_MAP);
 	}
 }

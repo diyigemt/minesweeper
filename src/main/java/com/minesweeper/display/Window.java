@@ -166,7 +166,7 @@ public class Window {
 	}
 
 	public boolean staticShow() {
-		ClearScreen.clsCmd();
+//		ClearScreen.clsCmd();
 		for (String s : this.contain) {
 			if (s == null) {
 				System.out.println("");

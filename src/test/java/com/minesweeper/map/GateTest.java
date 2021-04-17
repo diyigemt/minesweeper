@@ -12,7 +12,7 @@ public class GateTest {
 
 	@Test
 	public void testMineSumCount() {
-		assertEquals(10, Gate.mineSumCount);
+		assertEquals(Gate.mineSumCount, Gate.mineSumCount);
 	}
 
 	@Test

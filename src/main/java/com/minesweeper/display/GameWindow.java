@@ -7,6 +7,7 @@ import com.minesweeper.map.Map;
 import com.minesweeper.map.OpenGrid;
 import com.minesweeper.user.InputType;
 import com.minesweeper.utils.Constant;
+import com.minesweeper.utils.Store;
 
 import static com.minesweeper.utils.Constant.ERROR_INPUT;
 
@@ -101,6 +102,7 @@ public class GameWindow extends GridWindow {
 				}
 				case "p": {
 					Main.currentWindowName = Constant.CURRENT_WINDOW.PAUSE;
+					Store.setGameMap(map);
 					this.isRunning = false;
 					break;
 				}

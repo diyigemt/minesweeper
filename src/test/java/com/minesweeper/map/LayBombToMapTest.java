@@ -42,41 +42,41 @@ public class LayBombToMapTest {
 	@Parameterized.Parameters(name="{index}:first click is({0},{1}),bombNum= {2}")
 	public static Collection<Object []> testData(){
 		return Arrays.asList(new Object[][]{
-			{0,0,10},{0,1,10},{0,2,10},
-			{0,3,10},{0,4,10},{0,5,10},
-			{0,6,10},{0,7,10},{0,8,10},
-			
-			{1,0,10},{1,1,10},{1,2,10},
-			{1,3,10},{1,4,10},{1,5,10},
-			{1,6,10},{1,7,10},{1,8,10},
-			
-			{2,0,10},{2,1,10},{2,2,10},
-			{2,3,10},{2,4,10},{2,5,10},
-			{2,6,10},{2,7,10},{2,8,10},
-			
-			{3,0,10},{3,1,10},{3,2,10},
-			{3,3,10},{3,4,10},{3,5,10},
-			{3,6,10},{3,7,10},{3,8,10},
-			
-			{4,0,10},{4,1,10},{4,2,10},
-			{4,3,10},{4,4,10},{4,5,10},
-			{4,6,10},{4,7,10},{4,8,10},
-			
-			{5,0,10},{5,1,10},{5,2,10},
-			{5,3,10},{5,4,10},{5,5,10},
-			{5,6,10},{5,7,10},{5,8,10},
-			
-			{6,0,10},{6,1,10},{6,2,10},
-			{6,3,10},{6,4,10},{6,5,10},
-			{6,6,10},{6,7,10},{6,8,10},
-			
-			{7,0,10},{7,1,10},{7,2,10},
-			{7,3,10},{7,4,10},{7,5,10},
-			{7,6,10},{7,7,10},{7,8,10},
-			
-			{8,0,10},{8,1,10},{8,2,10},
-			{8,3,10},{8,4,10},{8,5,10},
-			{8,6,10},{8,7,10},{8,8,10},
+				{0,0,Gate.mineSumCount},{0,1,Gate.mineSumCount},{0,2,Gate.mineSumCount},
+				{0,3,Gate.mineSumCount},{0,4,Gate.mineSumCount},{0,5,Gate.mineSumCount},
+				{0,6,Gate.mineSumCount},{0,7,Gate.mineSumCount},{0,8,Gate.mineSumCount},
+
+				{1,0,Gate.mineSumCount},{1,1,Gate.mineSumCount},{1,2,Gate.mineSumCount},
+				{1,3,Gate.mineSumCount},{1,4,Gate.mineSumCount},{1,5,Gate.mineSumCount},
+				{1,6,Gate.mineSumCount},{1,7,Gate.mineSumCount},{1,8,Gate.mineSumCount},
+
+				{2,0,Gate.mineSumCount},{2,1,Gate.mineSumCount},{2,2,Gate.mineSumCount},
+				{2,3,Gate.mineSumCount},{2,4,Gate.mineSumCount},{2,5,Gate.mineSumCount},
+				{2,6,Gate.mineSumCount},{2,7,Gate.mineSumCount},{2,8,Gate.mineSumCount},
+
+				{3,0,Gate.mineSumCount},{3,1,Gate.mineSumCount},{3,2,Gate.mineSumCount},
+				{3,3,Gate.mineSumCount},{3,4,Gate.mineSumCount},{3,5,Gate.mineSumCount},
+				{3,6,Gate.mineSumCount},{3,7,Gate.mineSumCount},{3,8,Gate.mineSumCount},
+
+				{4,0,Gate.mineSumCount},{4,1,Gate.mineSumCount},{4,2,Gate.mineSumCount},
+				{4,3,Gate.mineSumCount},{4,4,Gate.mineSumCount},{4,5,Gate.mineSumCount},
+				{4,6,Gate.mineSumCount},{4,7,Gate.mineSumCount},{4,8,Gate.mineSumCount},
+
+				{5,0,Gate.mineSumCount},{5,1,Gate.mineSumCount},{5,2,Gate.mineSumCount},
+				{5,3,Gate.mineSumCount},{5,4,Gate.mineSumCount},{5,5,Gate.mineSumCount},
+				{5,6,Gate.mineSumCount},{5,7,Gate.mineSumCount},{5,8,Gate.mineSumCount},
+
+				{6,0,Gate.mineSumCount},{6,1,Gate.mineSumCount},{6,2,Gate.mineSumCount},
+				{6,3,Gate.mineSumCount},{6,4,Gate.mineSumCount},{6,5,Gate.mineSumCount},
+				{6,6,Gate.mineSumCount},{6,7,Gate.mineSumCount},{6,8,Gate.mineSumCount},
+
+				{7,0,Gate.mineSumCount},{7,1,Gate.mineSumCount},{7,2,Gate.mineSumCount},
+				{7,3,Gate.mineSumCount},{7,4,Gate.mineSumCount},{7,5,Gate.mineSumCount},
+				{7,6,Gate.mineSumCount},{7,7,Gate.mineSumCount},{7,8,Gate.mineSumCount},
+
+				{8,0,Gate.mineSumCount},{8,1,Gate.mineSumCount},{8,2,Gate.mineSumCount},
+				{8,3,Gate.mineSumCount},{8,4,Gate.mineSumCount},{8,5,Gate.mineSumCount},
+				{8,6,Gate.mineSumCount},{8,7,Gate.mineSumCount},{8,8,Gate.mineSumCount},
 
 		});
 		
