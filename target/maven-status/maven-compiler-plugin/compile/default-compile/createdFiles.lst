@@ -2,3 +2,5 @@ com\minesweeper\Main$1.class
 com\minesweeper\utils\Constant$CURRENT_WINDOW.class
 com\minesweeper\display\NaviWindow$1.class
 com\minesweeper\display\GameWindow.class
+com\minesweeper\repo\IRepo.class
+com\minesweeper\repo\Repository.class

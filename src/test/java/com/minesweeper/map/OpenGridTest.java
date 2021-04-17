@@ -152,10 +152,4 @@ public class OpenGridTest {
         System.out.println("open grid is:"+"("+x+" , "+y+")");
         assertEquals(true,map.map[x][y].isExpendTag());
     }
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> origin/main
 }

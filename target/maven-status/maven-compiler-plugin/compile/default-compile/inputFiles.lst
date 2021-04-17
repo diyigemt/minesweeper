@@ -1,9 +1,11 @@
 G:\Java\minesweeper\src\main\java\com\minesweeper\display\Window.java
+G:\Java\minesweeper\src\main\java\com\minesweeper\repo\IRepo.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\map\Point.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\user\InputType.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\SimpleGame.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\display\GameWindow.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\map\Map.java
+G:\Java\minesweeper\src\main\java\com\minesweeper\repo\Repository.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\utils\ClearScreen.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\Main.java
 G:\Java\minesweeper\src\main\java\com\minesweeper\display\NaviWindow.java

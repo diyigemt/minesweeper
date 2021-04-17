@@ -7,12 +7,9 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-<<<<<<< HEAD
 
 import java.util.Scanner;
 
-=======
->>>>>>> origin/main
 /**
  * 地图边界测试
  * @author duo
@@ -40,29 +37,20 @@ public class MapTest {
 	public void tearDown() throws Exception {
 		
 	}
-<<<<<<< HEAD
-	//测试存在最小值
-=======
 	/**
 	 * 测试存在最小值
 	 */
->>>>>>> origin/main
 	@Test
 	public void testMapExistMin() {
 		assertNotNull(map.map[0][0]);
 	}
-<<<<<<< HEAD
-	//测试存在最大值
-=======
 	/**
 	 * 测试存在最大值
 	 */
->>>>>>> origin/main
 	@Test
 	public void testMapExistMax() {
 		assertNotNull(map.map[Gate.sumRow-1][Gate.sumCol-1]);
 	}
-<<<<<<< HEAD
 
 	public void testMapPrint() {
 		LayBombToMap.layBomb(map.map, 0, 0);
@@ -93,6 +81,4 @@ public class MapTest {
 			grid.openGrid(map.map, x, y);
 		}
 	}
-=======
->>>>>>> origin/main
 }

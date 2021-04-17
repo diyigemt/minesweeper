@@ -1,11 +1,14 @@
 G:\Java\minesweeper\src\test\java\com\minesweeper\map\MapTest.java
-G:\Java\minesweeper\src\test\java\com\minesweeper\map\GridTest.java
 G:\Java\minesweeper\src\test\java\com\minesweeper\display\TestDisplay.java
-G:\Java\minesweeper\src\test\java\TestSimple.java
-G:\Java\minesweeper\src\test\java\com\minesweeper\display\TestGridWindow.java
 G:\Java\minesweeper\src\test\java\com\minesweeper\display\TestWindow.java
 G:\Java\minesweeper\src\test\java\com\minesweeper\map\GateTest.java
 G:\Java\minesweeper\src\test\java\com\minesweeper\map\LayBombToMapTest.java
 G:\Java\minesweeper\src\test\java\com\minesweeper\map\MapTest2.java
+G:\Java\minesweeper\src\test\java\com\minesweeper\map\OpenGridTest.java
+G:\Java\minesweeper\src\test\java\com\minesweeper\map\GridTest.java
+G:\Java\minesweeper\src\test\java\com\minesweeper\map\Map2Test.java
+G:\Java\minesweeper\src\test\java\TestSimple.java
+G:\Java\minesweeper\src\test\java\com\minesweeper\display\TestGridWindow.java
+G:\Java\minesweeper\src\test\java\com\minesweeper\map\OpenGridTest2.java
 G:\Java\minesweeper\src\test\java\com\minesweeper\user\UserInputTest.java
 G:\Java\minesweeper\src\test\java\com\minesweeper\user\UserNextInputTest.java

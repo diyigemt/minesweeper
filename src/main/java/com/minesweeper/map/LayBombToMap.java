@@ -8,26 +8,7 @@ import java.util.Random;
  *
  */
 public class LayBombToMap {
-<<<<<<< HEAD
 	static int layBombCount = 0;
-	//布置雷的函数，在游戏开始后第一次点击方块时call
-	public static void layBomb(Grid[][] map,int row,int col) {
-		layBombCount = 0;
-		Random random = new Random();
-		while (layBombCount < Gate.mineSumCount) {
-			int x = random.nextInt(Gate.sumRow);
-			int y = random.nextInt(Gate.sumCol);
-			if (map[x][y].isMineTag() == false && !(x == row && y == col)) {//第二个条件满足第一次点击不为雷
-				map[x][y].setMineTag(true);
-				map[x][y].setCountAround(9);//周围雷数暂时设为9
-
-				layBombCount++;
-			}
-		}
-		computeCountAround(map);
-	}
-	//计算每个方块周围雷数，写入方块中
-=======
 	
 	/**布置雷的函数，在游戏开始后第一次点击方块时call
 	 * @param map
@@ -56,7 +37,6 @@ public class LayBombToMap {
 	 * 计算每个方块周围雷数，写入方块中
 	 * @param map
 	 */
->>>>>>> origin/main
 	public static void computeCountAround(Grid[][] map) {
 		for (int i = 0; i < map.length; i++) {
 			for (int j = 0; j < map[i].length; j++) {

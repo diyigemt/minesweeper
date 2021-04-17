@@ -40,7 +40,7 @@ public class OpenGridTest2 {
     public void gameOverTest() throws Exception {
         Map map1=new Map();
         OpenGrid open1=new OpenGrid();
-        open1.gameOver(map1.map);
+        open1.gameLose(map1.map);
         System.out.println("gameover");
         assertEquals(true,open1.isGameOver());
     }

@@ -116,7 +116,7 @@ public class GameWindow extends GridWindow {
 					this.setGameMap(map.map);
 					if (grid.isGameOver()) {
 						Main.currentWindowName = Constant.CURRENT_WINDOW.GAME_RESULT;
-						Main.isWin = false;
+						Main.isWin = grid.isGameWin();
 						this.isRunning = false;
 					}
 					this.staticShow();
