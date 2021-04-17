@@ -16,6 +16,7 @@ public class Grid {
 	public Grid() {
 		
 	}
+
 	public Grid(int x, int y) throws Exception {
 		this.setRowx(x);
 		this.setColy(y);
