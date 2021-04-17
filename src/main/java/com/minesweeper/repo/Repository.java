@@ -14,6 +14,7 @@ public class Repository implements IRepo {
     private static Repository INSTANCE;
     public static final String HISTORY_FILE_NAME = "src/history.txt";
     public static final String SUCCESS_HISTORY_FILE_NAME = "src/success_history.txt";
+    public static final String MAP_FILE_NAME = "src/lastMap.txt";
 
     public static Repository getInstance() {
         if (INSTANCE == null) {
@@ -24,12 +25,27 @@ public class Repository implements IRepo {
 
     @Override
     public boolean saveGameContext(Map gameMap) {
-        return false;
+        try {
+            ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(MAP_FILE_NAME));
+            stream.writeObject(gameMap.map);
+            stream.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
     public boolean readContext(Map gameMap) {
-        return false;
+        try {
+            ObjectInputStream stream = new ObjectInputStream stream(new FileInputStream(MAP_FILE_NAME));
+            gameMap.map = (Grid[][]) stream.readObject();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
