@@ -10,11 +10,13 @@ import com.minesweeper.utils.Constant;
 import com.minesweeper.utils.Store;
 
 import static com.minesweeper.utils.Constant.ERROR_INPUT;
+import static com.minesweeper.utils.Constant.GAME_WIN;
 
 /**
  * 游戏主窗体
  * @author diyigemt
  */
+@SuppressWarnings("AlibabaSwitchStatement")
 public class GameWindow extends GridWindow {
 	private boolean isFirst;
 	private Map map;
@@ -43,8 +45,8 @@ public class GameWindow extends GridWindow {
 		this.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 17);
 		this.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 19);
 		this.setCursorText("%s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s %s X %s", 21);
-		this.cursorPosX = 0;
-		this.cursorPosY = 0;
+		this.posX = 0;
+		this.posY = 0;
 	}
 
 	/**
@@ -116,7 +118,7 @@ public class GameWindow extends GridWindow {
 					if (isFirst) {
 						break;
 					}
-					grid.markGrid(map.map, this.cursorPosX, this.cursorPosY);
+					grid.markGrid(map.map, this.posX, this.posY);
 					break;
 				}
 				case "p": {
@@ -126,8 +128,8 @@ public class GameWindow extends GridWindow {
 					break;
 				}
 				case "": {
-					int posX = this.cursorPosX;
-					int posY = this.cursorPosY;
+					int posX = this.posX;
+					int posY = this.posY;
 					if (isFirst) {
 						grid.reset();
 						LayBombToMap.layBomb(map.map, posY, posX);
@@ -137,11 +139,14 @@ public class GameWindow extends GridWindow {
 					this.setGameMap(map.map);
 					if (grid.isGameOver()) {
 						Main.currentWindowName = Constant.CURRENT_WINDOW.GAME_RESULT;
-						Main.isWin = grid.isGameWin();
+						Constant.GAME_TOTAL = Constant.GAME_TOTAL + 1;
+						if (grid.isGameWin()) {
+							Main.isWin = grid.isGameWin();
+							Constant.GAME_WIN = GAME_WIN + 1;
+						}
 						this.isRunning = false;
 					}
 					this.staticShow();
-					// TODO win ???
 				}
 			}
 		}

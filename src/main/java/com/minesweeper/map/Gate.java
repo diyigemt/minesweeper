@@ -6,7 +6,7 @@ package com.minesweeper.map;
  */
 
 public class Gate {
-	public static int mineSumCount = 2;
+	public static int mineSumCount = 9;
 	public static int sumCol = 9;
 	public static int sumRow = 9;
 }

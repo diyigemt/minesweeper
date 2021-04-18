@@ -7,7 +7,7 @@ import com.minesweeper.map.OpenGrid;
 
 import java.util.Scanner;
 
-public class SimpleGame {
+public class TestSimpleGame {
   public static void main(String[] args) throws Exception {
     Map map = new Map();
     LayBombToMap.layBomb(map.map, 0, 0);

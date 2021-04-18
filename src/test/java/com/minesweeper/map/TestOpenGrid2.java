@@ -152,4 +152,14 @@ public class TestOpenGrid2 {
         System.out.println("open grid is:"+"("+x+" , "+y+")");
         assertEquals(true,map.map[x][y].isExpendTag());
     }
+
+    @Test
+    //查看游戏获胜是否生效
+    public void resetTest() throws Exception {
+        Map map1=new Map();
+        OpenGrid open1=new OpenGrid();
+        open1.reset();
+        System.out.println("reset");
+        assertEquals(false,open1.isGameOver());
+    }
 }

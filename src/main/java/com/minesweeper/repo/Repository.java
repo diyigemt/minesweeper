@@ -2,6 +2,8 @@ package com.minesweeper.repo;
 
 import com.minesweeper.map.Grid;
 import com.minesweeper.map.Map;
+import com.minesweeper.utils.Constant;
+import com.minesweeper.utils.Store;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -99,7 +101,7 @@ public class Repository implements IRepo {
      */
     @Override
     public int readAllHistory() {
-        int result = -1;
+        int result = Constant.GAME_TOTAL;
         try {
             result = Integer.parseInt(new BufferedReader(new FileReader(HISTORY_FILE_NAME)).readLine());
         } catch (Exception e) {
@@ -113,7 +115,7 @@ public class Repository implements IRepo {
      */
     @Override
     public int readSuccessHistory() {
-        int result = -1;
+        int result = Constant.GAME_WIN;
         try {
             result = Integer.parseInt(new BufferedReader(new FileReader(SUCCESS_HISTORY_FILE_NAME)).readLine());
         } catch (Exception e) {

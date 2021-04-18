@@ -10,10 +10,12 @@ import com.minesweeper.repo.Repository;
 import com.minesweeper.utils.ClearScreen;
 import com.minesweeper.utils.Constant;
 import com.minesweeper.utils.Store;
+import com.minesweeper.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+@SuppressWarnings("AlibabaSwitchStatement")
 public class Main {
 
 	private static Window currentWindow;
@@ -22,7 +24,8 @@ public class Main {
 	public static boolean isRunning = true;
 	public static boolean isPause = false;
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
+		Utils.initConsoleSize();
 		currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
 		NaviWindow mainWindow = new NaviWindow();
 		mainWindow.setText("Mine Sweeper", 5);
@@ -81,6 +84,7 @@ public class Main {
 				} case PAUSE: {
 					gamePauseWindow.resetCursor();
 					currentWindow = gamePauseWindow;
+					break;
 				}
 				case RECORD: {
 					int success = Repository.getInstance().readSuccessHistory();

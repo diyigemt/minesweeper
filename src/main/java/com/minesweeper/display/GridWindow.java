@@ -12,20 +12,24 @@ import java.util.regex.Pattern;
  * @author diyigemt
  */
 public class GridWindow extends Window {
-	protected int cursorPosX = -1; // 光标x坐标
-	protected int cursorPosY = -1; // 光标y坐标
-	private ArrayList<GridWindowInfo> availablePos = new ArrayList<GridWindowInfo>(); // 可用的菜单项坐标列表
+	// 光标x坐标
+	protected int posX = -1;
+	// 光标y坐标
+	protected int posY = -1;
+	// 可用的菜单项坐标列表
+	private ArrayList<GridWindowInfo> allPos = new ArrayList<GridWindowInfo>();
+	private static final Pattern PATTERN = Pattern.compile("%s");
 
 	public GridWindow() {
 		super();
 	}
 
 	public int getCurrentPosX() {
-		return this.cursorPosX;
+		return this.posX;
 	}
 
 	public int getCurrentPosY() {
-		return this.cursorPosY;
+		return this.posY;
 	}
 
 	/**
@@ -36,21 +40,23 @@ public class GridWindow extends Window {
 	 * @return 是否添加成功
 	 */
 	public boolean setCursorText(String text, int posY) {
-		if (!this.checkPos(posY)) return false;
+		if (!this.checkPos(posY)) {
+			return false;
+		}
 		int posCount = getPosXCount(text);
 		if (posCount == 0) {
 			text = "%s" + text + "%s";
 		}
-		if (this.cursorPosY == -1) {
-			this.cursorPosY = 0;
-			this.cursorPosX = 0;
+		if (this.posY == -1) {
+			this.posY = 0;
+			this.posX = 0;
 		}
 		ArrayList<Integer> allPosX = findAllPosX(text);
-		if (this.availablePos.isEmpty()) {
+		if (this.allPos.isEmpty()) {
 			GridWindowInfo info = new GridWindowInfo();
 			info.setArray(allPosX);
 			info.setPosY(posY);
-			this.availablePos.add(info);
+			this.allPos.add(info);
 		} else {
 			this.sortAdd(allPosX, posY);
 		}
@@ -64,7 +70,7 @@ public class GridWindow extends Window {
 	 * @return 可用的数量
 	 */
 	private int getPosXCount(String text) {
-		Matcher matcher = Pattern.compile("%s").matcher(text);
+		Matcher matcher = PATTERN.matcher(text);
 		int res = 0;
 		while (matcher.find()) {
 			res++;
@@ -78,7 +84,9 @@ public class GridWindow extends Window {
 	 * @return 可用x方向菜单位置
 	 */
 	private ArrayList<Integer> findAllPosX(String text) {
-		if (text == null || text.equals("")) return null;
+		if (text == null || "".equals(text)) {
+			return null;
+		}
 		ArrayList<Integer> res = new ArrayList<Integer>();
 		while (text.contains("%s")) {
 			int index = text.indexOf("%s");
@@ -96,8 +104,8 @@ public class GridWindow extends Window {
 	 */
 	private int getPosYInfoIndex(int posY) {
 		int res = -1;
-		for (int i = 0; i < this.availablePos.size(); i++) {
-			if (this.availablePos.get(i).getPosY() == posY) {
+		for (int i = 0; i < this.allPos.size(); i++) {
+			if (this.allPos.get(i).getPosY() == posY) {
 				res = i;
 				break;
 			}
@@ -113,12 +121,12 @@ public class GridWindow extends Window {
 	private void sortAdd(ArrayList<Integer> list, int posY) {
 		int index = getPosYInfoIndex(posY);
 		if (index != -1) {
-			GridWindowInfo tmp = this.availablePos.get(index);
+			GridWindowInfo tmp = this.allPos.get(index);
 			tmp.setArray(list);
 			return;
 		}
-		for (int i = 0; i < this.availablePos.size() - 1; i++) {
-			if (this.availablePos.get(i).getPosY() < posY && this.availablePos.get(i + 1).getPosY() > posY) {
+		for (int i = 0; i < this.allPos.size() - 1; i++) {
+			if (this.allPos.get(i).getPosY() < posY && this.allPos.get(i + 1).getPosY() > posY) {
 				index = i;
 				break;
 			}
@@ -127,9 +135,9 @@ public class GridWindow extends Window {
 		info.setPosY(posY);
 		info.setArray(list);
 		if (index != -1) {
-			this.availablePos.add(index, info);
+			this.allPos.add(index, info);
 		} else {
-			this.availablePos.add(info);
+			this.allPos.add(info);
 		}
 	}
 
@@ -148,8 +156,10 @@ public class GridWindow extends Window {
 	 * @return 是否移动成功
 	 */
 	public boolean next() {
-		if (!hasNext()) return false;
-		this.cursorPosY++;
+		if (!hasNext()) {
+			return false;
+		}
+		this.posY++;
 		return this.staticShow();
 	}
 
@@ -158,8 +168,10 @@ public class GridWindow extends Window {
 	 * @return 是否移动成功
 	 */
 	public boolean prev() {
-		if (!hasPrev()) return false;
-		this.cursorPosY--;
+		if (!hasPrev()) {
+			return false;
+		}
+		this.posY--;
 		return this.staticShow();
 	}
 
@@ -168,8 +180,10 @@ public class GridWindow extends Window {
 	 * @return 是否移动成功
 	 */
 	public boolean right() {
-		if (!hasRight()) return false;
-		this.cursorPosX++;
+		if (!hasRight()) {
+			return false;
+		}
+		this.posX++;
 		return this.staticShow();
 	}
 
@@ -178,8 +192,10 @@ public class GridWindow extends Window {
 	 * @return 是否移动成功
 	 */
 	public boolean left() {
-		if (!hasLeft()) return false;
-		this.cursorPosX--;
+		if (!hasLeft()) {
+			return false;
+		}
+		this.posX--;
 		return this.staticShow();
 	}
 
@@ -188,8 +204,10 @@ public class GridWindow extends Window {
 	 * @return 是否可以移动
 	 */
 	public boolean hasNext() {
-		if (this.availablePos.isEmpty()) return false;
-		return this.cursorPosY < this.availablePos.size() - 1;
+		if (this.allPos.isEmpty()) {
+			return false;
+		}
+		return this.posY < this.allPos.size() - 1;
 	}
 
 	/**
@@ -197,8 +215,10 @@ public class GridWindow extends Window {
 	 * @return 是否可以移动
 	 */
 	public boolean hasPrev() {
-		if (this.availablePos.isEmpty()) return false;
-		return this.cursorPosY > 0;
+		if (this.allPos.isEmpty()) {
+			return false;
+		}
+		return this.posY > 0;
 	}
 
 	/**
@@ -206,9 +226,11 @@ public class GridWindow extends Window {
 	 * @return 是否可以移动
 	 */
 	public boolean hasRight() {
-		ArrayList<Integer> array = this.availablePos.get(this.cursorPosY).getArray();
-		if (array.isEmpty()) return false;
-		return this.cursorPosX < array.size() - 1;
+		ArrayList<Integer> array = this.allPos.get(this.posY).getArray();
+		if (array.isEmpty()) {
+			return false;
+		}
+		return this.posX < array.size() - 1;
 	}
 
 	/**
@@ -216,9 +238,11 @@ public class GridWindow extends Window {
 	 * @return 是否可以移动
 	 */
 	public boolean hasLeft() {
-		ArrayList<Integer> array = this.availablePos.get(this.cursorPosY).getArray();
-		if (array.isEmpty()) return false;
-		return this.cursorPosX > 0;
+		ArrayList<Integer> array = this.allPos.get(this.posY).getArray();
+		if (array.isEmpty()) {
+			return false;
+		}
+		return this.posX > 0;
 	}
 
 	/**
@@ -229,9 +253,9 @@ public class GridWindow extends Window {
 	@Override
 	public boolean staticShow() {
 		ClearScreen.clsCmd();
-		GridWindowInfo info = this.availablePos.get(this.cursorPosY);
+		GridWindowInfo info = this.allPos.get(this.posY);
 		int posY = info.getPosY();
-		int posX = this.cursorPosX;
+		int posX = this.posX;
 		for (int i = 0; i < this.contain.length; i++) {
 			String s = this.contain[i];
 			if (s == null) {
@@ -240,7 +264,9 @@ public class GridWindow extends Window {
 			}
 			if (i == posY) {
 				int size = info.getArray().size() - 1;
-				if (posX > size) posX = size;
+				if (posX > size) {
+					posX = size;
+				}
 				int k = 0;
 				while (s.contains("%s")) {
 					if (k == posX) {

@@ -1,13 +1,19 @@
 package com.minesweeper.display;
 
-import com.minesweeper.display.GridWindow;
 import com.minesweeper.map.LayBombToMap;
 import com.minesweeper.map.Map;
 import com.minesweeper.map.OpenGrid;
+import com.minesweeper.utils.Store;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class TestGridWindow {
+	@Before
+	public void setData() {
+		Store.setConsoleSize(50, 120);
+	}
+
 	@Test
 	public void testGridWindowSetText() {
 		GridWindow window = new GridWindow();

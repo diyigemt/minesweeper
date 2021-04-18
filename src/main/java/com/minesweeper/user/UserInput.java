@@ -32,7 +32,9 @@ public class UserInput{
      * */
     public boolean isValid(String op, InputType input){
         op = op.toLowerCase(Locale.ROOT);
-        if (input.getValidInputString() == null) return false;
+        if (input.getValidInputString() == null) {
+					return false;
+				}
         return input.getValidInputString().contains(op);
     }
 

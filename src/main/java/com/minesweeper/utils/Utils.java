@@ -7,19 +7,23 @@ import java.io.IOException;
 public class Utils {
 	private static final int DIV_POS = 10;
 
+	static {
+		initConsoleSize();
+	}
 	/**
 	 * 使用powershell的API获取控制台宽高
 	 */
-	private static void initConsoleSize() {
-		ProcessBuilder pb = new ProcessBuilder("powershell", "/c", "$host.UI.RawUI.WindowSize.Height");
-		try {
-			int height = pb.inheritIO().start().getInputStream().read();
-			pb.command("powershell", "/c", "$host.UI.RawUI.WindowSize.Width");
-			int width = pb.inheritIO().start().getInputStream().read();
-			Store.setConsoleSize(height, width);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public static void initConsoleSize() {
+		Store.setConsoleSize(50, 120);
+//		ProcessBuilder pb = new ProcessBuilder("powershell", "/c", "$host.UI.RawUI.WindowSize.Height");
+//		try {
+//			int height = pb.inheritIO().start().getInputStream().read();
+//			pb.command("powershell", "/c", "$host.UI.RawUI.WindowSize.Width");
+//			int width = pb.inheritIO().start().getInputStream().read();
+//			Store.setConsoleSize(height, width);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	/**
@@ -96,7 +100,9 @@ public class Utils {
 	 */
 	public static String getPosText(int height, int width, String s, int left) {
 		int length = s.length();
-		if (length + left > width) return "";
+		if (length + left > width) {
+			return "";
+		}
 		StringBuilder sb = new StringBuilder();
 		sb.append(getEmpty(left));
 		sb.append(s);
@@ -131,7 +137,9 @@ public class Utils {
 	 * @return 添加了光标的字符串
 	 */
 	private static String getCursorText(int width, String s, int space) {
-		if (s == null || s.equals("") || (s.length() + 4 + space * 2) > width) return ">> <<";
+		if (s == null || "".equals(s) || (s.length() + 4 + space * 2) > width) {
+			return ">> <<";
+		}
 		StringBuilder sb = new StringBuilder();
 		String trim = s.trim();
 		sb.append(">>").append(getEmpty(space)).append(trim).append(getEmpty(space)).append("<<");

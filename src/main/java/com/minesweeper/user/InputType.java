@@ -8,10 +8,13 @@ import java.util.ArrayList;
  * 用户输入的有效类型
  * @author lzy
  * */
+@SuppressWarnings("AlibabaSwitchStatement")
 public enum InputType {
 
-
-    MENU, GAME;
+    /* 主菜单 */
+    MENU,
+    /* 游戏 */
+    GAME;
 
     /**
      * UP,DOWN,LEFT,RIGHT 对应wasd（上下左右）功能

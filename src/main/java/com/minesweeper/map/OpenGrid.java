@@ -78,10 +78,11 @@ public class OpenGrid {
      * @param posY 点击的方块对应的列数
      */
     public void markGrid(Grid[][] map, int posX, int posY){
-        if(!map[posX][posY].isFlagTag())
-            map[posX][posY].setFlagTag(true);
-        else if(map[posX][posY].isFlagTag())
-            map[posX][posY].setFlagTag(false);
+        if(!map[posX][posY].isFlagTag()) {
+					map[posX][posY].setFlagTag(true);
+				} else if(map[posX][posY].isFlagTag()) {
+					map[posX][posY].setFlagTag(false);
+				}
     }
     /**标记格子的函数，将格子设为标记状态
      * @param map 使用的地图，为方块数组
@@ -118,8 +119,9 @@ public class OpenGrid {
         }  else if (map[posX][posY].isMineTag()) {
             this.gameLose(map);
         }
-        if(this.getExpandTags()+Gate.mineSumCount==Gate.sumCol*Gate.sumRow)
-            this.gameWin(map);
+        if(this.getExpandTags()+Gate.mineSumCount==Gate.sumCol*Gate.sumRow) {
+					this.gameWin(map);
+				}
     }
 
     public boolean isGameOver() {

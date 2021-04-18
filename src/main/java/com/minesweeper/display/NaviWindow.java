@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import static com.minesweeper.utils.Constant.ERROR_INPUT;
 
+@SuppressWarnings("AlibabaSwitchStatement")
 public class NaviWindow extends Window{
 	private ArrayList<Integer> availablePos = new ArrayList<Integer>(); // 存储属于光标项目的位置
 	private int cursorPos = -1; // 当前光标位置
@@ -46,7 +47,9 @@ public class NaviWindow extends Window{
 	 */
 	public boolean addAvailablePos(int pos) {
 		String tmp = this.contain[pos];
-		if (tmp == null) return false;
+		if (tmp == null) {
+			return false;
+		}
 		this.sortAdd(pos);
 		return true;
 	}
@@ -60,7 +63,9 @@ public class NaviWindow extends Window{
 			this.availablePos.add(data);
 			return;
 		}
-		if (this.availablePos.contains(data)) return;
+		if (this.availablePos.contains(data)) {
+			return;
+		}
 		if (this.availablePos.get(0) > data) {
 			this.availablePos.add(0, data);
 			return;
@@ -81,7 +86,9 @@ public class NaviWindow extends Window{
 	public void removeCursor(int pos) {
 		int index = this.availablePos.get(pos);
 		String tmp = this.contain[index];
-		if (tmp == null) return;
+		if (tmp == null) {
+			return;
+		}
 		tmp = tmp.replace(">>", "  ").replace("<<", "  ");
 		this.contain[index] = tmp;
 	}
@@ -93,7 +100,9 @@ public class NaviWindow extends Window{
 	 * @return 是否添加成功
 	 */
 	public boolean setCursorText(String target, int posY) {
-		if (!this.checkPos(posY)) return false;
+		if (!this.checkPos(posY)) {
+			return false;
+		}
 		if (this.cursorPos == -1) {
 			this.cursorPos = 0;
 			String cursorText = Utils.getCursorWideText(this.width, target);
@@ -110,7 +119,9 @@ public class NaviWindow extends Window{
 	 * @return 是否移动成功
 	 */
 	public boolean next() {
-		if (!hasNext()) return false;
+		if (!hasNext()) {
+			return false;
+		}
 		int index = this.cursorPos;
 		int nextPos = this.availablePos.get(index + 1);
 		String cursorText = Utils.getCursorWideText(this.width, this.contain[nextPos]);
@@ -125,7 +136,9 @@ public class NaviWindow extends Window{
 	 * @return 是否移动成功
 	 */
 	public boolean prev() {
-		if (!hasPrev()) return false;
+		if (!hasPrev()) {
+			return false;
+		}
 		int index = this.cursorPos;
 		int prevPos = this.availablePos.get(index - 1);
 		String cursorText = Utils.getCursorWideText(this.width, this.contain[prevPos]);
@@ -140,7 +153,9 @@ public class NaviWindow extends Window{
 	 * @return 是否可以移动
 	 */
 	public boolean hasNext() {
-		if (this.availablePos.isEmpty()) return false;
+		if (this.availablePos.isEmpty()) {
+			return false;
+		}
 		return this.cursorPos < this.availablePos.size() - 1;
 	}
 
@@ -149,7 +164,9 @@ public class NaviWindow extends Window{
 	 * @return 是否可以移动
 	 */
 	public boolean hasPrev() {
-		if (this.availablePos.isEmpty()) return false;
+		if (this.availablePos.isEmpty()) {
+			return false;
+		}
 		return this.cursorPos > 0;
 	}
 
@@ -166,14 +183,18 @@ public class NaviWindow extends Window{
 	 * @param pos 设置值
 	 */
 	public void setCursorPos(int pos) {
-		if (this.checkPos(pos) && this.availablePos.size() > pos) this.cursorPos = pos;
+		if (this.checkPos(pos) && this.availablePos.size() > pos) {
+			this.cursorPos = pos;
+		}
 	}
 
 	/**
 	 * 重置光标位置到第一个菜单项
 	 */
 	public void resetCursor() {
-		if (this.availablePos.isEmpty()) return;
+		if (this.availablePos.isEmpty()) {
+			return;
+		}
 		int index = this.cursorPos;
 		this.removeCursor(index);
 		int prevPos = this.availablePos.get(0);

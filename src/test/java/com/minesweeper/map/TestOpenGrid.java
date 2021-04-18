@@ -45,13 +45,4 @@ public class TestOpenGrid {
         assertEquals(true,open1.isGameOver());
     }
 
-    @Test
-    //查看游戏获胜是否生效
-    public void resetTest() throws Exception {
-        Map map1=new Map();
-        OpenGrid open1=new OpenGrid();
-        open1.reset();
-        System.out.println("reset");
-        assertEquals(false,open1.isGameOver());
-    }
 }

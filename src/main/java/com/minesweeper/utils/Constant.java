@@ -9,8 +9,23 @@ public class Constant {
 	public static final ArrayList<String> MENU_LIST = new ArrayList<String>();
 	public static final ArrayList<String> GAME_LIST = new ArrayList<String>();
 	public static final String ERROR_INPUT = "-1";
+	public static int GAME_TOTAL = 0;
+	public static int GAME_WIN = 0;
+
+	/**
+	 * 提供当前运行的界面信息
+	 */
 	public enum CURRENT_WINDOW {
-		MAIN_MENU, GAME, PAUSE, GAME_RESULT, RECORD
+		/* 主菜单 */
+		MAIN_MENU,
+		/* 游戏界面 */
+		GAME,
+		/* 暂停界面 */
+		PAUSE,
+		/* 游戏结果界面 */
+		GAME_RESULT,
+		/* 生涯界面 */
+		RECORD
 	}
 	static {
 		MENU_LIST.add("w");

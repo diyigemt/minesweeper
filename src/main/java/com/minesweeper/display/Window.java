@@ -5,6 +5,10 @@ import com.minesweeper.utils.ClearScreen;
 import com.minesweeper.utils.Store;
 import com.minesweeper.utils.Utils;
 
+/**
+ * @author diyigemt
+ */
+@SuppressWarnings("AlibabaCommentsMustBeJavadocFormat")
 public class Window {
 	protected int height; //控制台窗口能显示的行数
 	protected int width; //控制台窗口每行能显示的列数
@@ -16,10 +20,8 @@ public class Window {
 	protected UserInput input = new UserInput();
 
 	public Window() {
-//		this.height = Store.getConsoleHeight();
-//		this.width = Store.getConsoleWidth();
-		this.width = 120;
 		this.height = 50;
+		this.width = 120;
 		this.contain = new String[this.height];
 		this.nextPosY = this.startPosY = this.height / 2;
 	}
@@ -27,20 +29,28 @@ public class Window {
 	// 设置第一行显示位置 默认为屏幕中间
 	public Window(int startPosY) {
 		this();
-		if (startPosY > this.height) startPosY = this.height / 2;
+		if (startPosY > this.height) {
+			startPosY = this.height / 2;
+		}
 		this.nextPosY = this.startPosY = startPosY;
 	}
 
 	// 设置第一行显示位置
 	public boolean setStartPosY(int startPosY) {
-		if (startPosY > height) startPosY = height / 2;
+		if (startPosY > height) {
+			startPosY = height / 2;
+		}
 		this.nextPosY = this.startPosY = startPosY;
 		return true;
 	}
 
-	// 文本居中 左对齐 右对齐
 	public enum TextPos {
-		Center, Left, Right
+		/* 居中 */
+		Center,
+		/* 左对齐 */
+		Left,
+		/* 右对齐 */
+		Right
 	}
 
 	/**
@@ -61,7 +71,9 @@ public class Window {
 	 * @return 设置是否成功 当前屏幕没有下一行的时候返回false
 	 */
 	public boolean setText(String text, TextPos pos) {
-		if (!checkPos(this.nextPosY)) return false;
+		if (!checkPos(this.nextPosY)) {
+			return false;
+		}
 		switch (pos) {
 			case Left:
 				return setNativeText(text, this.nextPosY++);
@@ -106,7 +118,9 @@ public class Window {
 	 * @return 设置是否成功 当前屏幕没有下一行的时候返回false
 	 */
 	protected boolean setNativeText(String text, int posY) {
-		if (!checkPos(posY)) return false;
+		if (!checkPos(posY)) {
+			return false;
+		}
 		this.contain[posY] = text;
 		return true;
 	}
@@ -129,7 +143,9 @@ public class Window {
 	 */
 	public boolean show(boolean isCover) {
 		if (isCover) {
-			if (this.contain.length != this.prevContain.length) return false;
+			if (this.contain.length != this.prevContain.length) {
+				return false;
+			}
 			if (this.prevContain != null) {
 				int index = 0;
 				for (String s : this.contain) {
