@@ -28,6 +28,6 @@ public class TestUserNextInput {
     public void getNextInput() {
         InputType inputType = InputType.MENU;
         UserInput userInput = new UserInput();
-        Assert.assertEquals(ERROR_INPUT,userInput.getNextInput(inputType));
+        Assert.assertEquals(ERROR_INPUT, userInput.getNextInput(inputType));
     }
 }

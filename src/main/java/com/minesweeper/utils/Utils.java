@@ -27,7 +27,7 @@ public class Utils {
 	 * @param length 长度
 	 * @return 空串
 	 */
-	private static String getEmpty(int length) {
+	public static String getEmpty(int length) {
 		StringBuilder sb = new StringBuilder();
 		int i = 0;
 		while (i < length) {
@@ -43,8 +43,8 @@ public class Utils {
 	 * @param b 被除数
 	 * @return 向下取整的结果
 	 */
-	private static int divAndCeil(int a, int b) {
-		return (int) Math.ceil(((float) a) / b);
+	public static int divAndCeil(int a, int b) {
+		return (int) Math.floor(((float) a) / b);
 	}
 
 	/**
@@ -96,6 +96,7 @@ public class Utils {
 	 */
 	public static String getPosText(int height, int width, String s, int left) {
 		int length = s.length();
+		if (length + left > width) return "";
 		StringBuilder sb = new StringBuilder();
 		sb.append(getEmpty(left));
 		sb.append(s);
@@ -130,7 +131,7 @@ public class Utils {
 	 * @return 添加了光标的字符串
 	 */
 	private static String getCursorText(int width, String s, int space) {
-		if (s == null || s.equals("")) return ">> <<";
+		if (s == null || s.equals("") || (s.length() + 4 + space * 2) > width) return ">> <<";
 		StringBuilder sb = new StringBuilder();
 		String trim = s.trim();
 		sb.append(">>").append(getEmpty(space)).append(trim).append(getEmpty(space)).append("<<");

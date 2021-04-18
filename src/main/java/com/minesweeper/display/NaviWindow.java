@@ -166,7 +166,7 @@ public class NaviWindow extends Window{
 	 * @param pos 设置值
 	 */
 	public void setCursorPos(int pos) {
-		this.cursorPos = pos;
+		if (this.checkPos(pos) && this.availablePos.size() > pos) this.cursorPos = pos;
 	}
 
 	/**

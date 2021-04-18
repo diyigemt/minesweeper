@@ -83,4 +83,16 @@ public class TestWindow {
 		window.prev();
 		window.prev();
 	}
+
+	@Test
+	public void testSetCursorPos() {
+		NaviWindow window = new NaviWindow();
+		window.setCursorPos(0);
+		Assert.assertEquals(window.getCurrentCursorPos(), -1);
+		window.setCursorPos(1);
+		Assert.assertEquals(window.getCurrentCursorPos(), -1);
+		window.setCursorText("", 6);
+		window.setCursorPos(0);
+		Assert.assertEquals(window.getCurrentCursorPos(), 0);
+	}
 }
