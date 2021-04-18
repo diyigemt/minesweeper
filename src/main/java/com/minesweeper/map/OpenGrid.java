@@ -1,6 +1,10 @@
 package com.minesweeper.map;
 
-
+/**
+ * 包括打开格子和标记格子的函数，同时判断游戏胜负
+ * @author cxy
+ *
+ */
 public class OpenGrid {
     public int getExpandTags() {
         return expandtags;
@@ -16,11 +20,17 @@ public class OpenGrid {
 
     public OpenGrid() {
     }
-
+    /**判断点周围八邻域的点
+     * @param posX 格子的行数
+     * @param posY 格子的列数
+     */
     public Point[] getPoint(int posX, int posY) {
         Point[] point = new Point[]{new Point(posX - 1, posY), new Point(posX - 1, posY - 1), new Point(posX, posY - 1), new Point(posX + 1, posY - 1), new Point(posX + 1, posY), new Point(posX + 1, posY + 1), new Point(posX, posY + 1), new Point(posX - 1, posY + 1)};
         return point;
     }
+    /**判断游戏胜利，并将所有雷格子打开
+     * @param map 使用的地图，为方块数组
+     */
     public void gameLose(Grid[][] map) {
         Grid[][] var2 = map;
         int var3 = map.length;
@@ -40,6 +50,9 @@ public class OpenGrid {
         this.isGameWin = false;
         this.isGameOver = true;
     }
+    /**判断游戏失败，并将所有雷格子打开
+     * @param map 使用的地图，为方块数组
+     */
     public void gameWin(Grid[][] map) {
         Grid[][] var2 = map;
         int var3 = map.length;
@@ -59,12 +72,22 @@ public class OpenGrid {
         this.isGameOver = true;
         this.isGameWin = true;
     }
+    /**标记格子的函数，将格子设为标记状态
+     * @param map 使用的地图，为方块数组
+     * @param posX 点击的方块对应的行数
+     * @param posY 点击的方块对应的列数
+     */
     public void markGrid(Grid[][] map, int posX, int posY){
         if(!map[posX][posY].isFlagTag())
             map[posX][posY].setFlagTag(true);
         else if(map[posX][posY].isFlagTag())
             map[posX][posY].setFlagTag(false);
     }
+    /**标记格子的函数，将格子设为标记状态
+     * @param map 使用的地图，为方块数组
+     * @param posX 点击的方块对应的行数
+     * @param posY 点击的方块对应的列数
+     */
     public void openGrid(Grid[][] map, int posX, int posY) {
         this.setExpandTags(this.getExpandTags()+1);
         if (map[posX][posY].getCountAround() == 0) {
