@@ -13,7 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-public class OpenGridTest2 {
+public class TestOpenGrid2 {
     static Map map;
     @Before
     public void setUp() throws Exception {

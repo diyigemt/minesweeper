@@ -25,7 +25,7 @@ import org.junit.runners.Parameterized.Parameters;
  * @author duo
  */
 @RunWith(Parameterized.class)
-public class GridTest {
+public class TestGrid {
 	private Grid grid;
 	/**
 	 * 参数注入

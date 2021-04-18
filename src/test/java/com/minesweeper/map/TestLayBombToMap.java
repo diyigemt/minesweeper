@@ -21,7 +21,7 @@ import org.junit.runners.Parameterized;
  *
  */
 @RunWith(Parameterized.class)
-public class LayBombToMapTest {
+public class TestLayBombToMap {
 	static Map map;
 	int x;
 	int y;
@@ -33,7 +33,7 @@ public class LayBombToMapTest {
 	 * @param y
 	 * @param expectBombCount
 	 */
-	public LayBombToMapTest(int x,int y,int expectBombCount) {
+	public TestLayBombToMap(int x, int y, int expectBombCount) {
 		this.x = x;
 		this.y = y;
 		this.expectBombCount = expectBombCount;

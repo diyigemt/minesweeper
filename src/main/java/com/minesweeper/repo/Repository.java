@@ -12,9 +12,9 @@ import java.nio.charset.StandardCharsets;
 
 public class Repository implements IRepo {
     private static Repository INSTANCE;
-    public static final String HISTORY_FILE_NAME = "history.txt";
-    public static final String SUCCESS_HISTORY_FILE_NAME = "success_history.txt";
-    public static final String MAP_FILE_NAME = "lastMap.txt";
+    public static final String HISTORY_FILE_NAME = "src/history.txt";
+    public static final String SUCCESS_HISTORY_FILE_NAME = "src/success_history.txt";
+    public static final String MAP_FILE_NAME = "src/lastMap.txt";
 
     private static InputStream getFilePath(String fileName) {
         return Repository.class.getResourceAsStream("/resources/" + fileName);
@@ -115,7 +115,7 @@ public class Repository implements IRepo {
     public int readSuccessHistory() {
         int result = -1;
         try {
-            result = Integer.parseInt(new BufferedReader(new InputStreamReader(getFilePath(MAP_FILE_NAME))).readLine());
+            result = Integer.parseInt(new BufferedReader(new FileReader(SUCCESS_HISTORY_FILE_NAME)).readLine());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -136,16 +136,5 @@ public class Repository implements IRepo {
             e.printStackTrace();
             return false;
         }
-    }
-
-    // 测试
-    public static void main(String[] args) throws Exception {
-        System.out.println(getInstance().updateAllHistory());
-        System.out.println(getInstance().updateHistory());
-        System.out.println(getInstance().readAllHistory());
-        System.out.println(getInstance().readSuccessHistory());
-        getInstance().clearHistory();
-        System.out.println(getInstance().readAllHistory());
-        System.out.println(getInstance().readSuccessHistory());
     }
 }

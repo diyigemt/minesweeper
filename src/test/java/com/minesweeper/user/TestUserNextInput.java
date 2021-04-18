@@ -11,7 +11,7 @@ import java.io.ByteArrayInputStream;
 
 import static com.minesweeper.utils.Constant.ERROR_INPUT;
 
-public class UserNextInputTest {
+public class TestUserNextInput {
 
     @Before
     public void setUp() throws Exception {

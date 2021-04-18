@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author duo
  *
  */
-public class MapTest {
+public class TestMap {
 
 	static Map map;
 	@BeforeClass

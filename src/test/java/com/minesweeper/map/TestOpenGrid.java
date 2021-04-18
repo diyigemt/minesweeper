@@ -14,14 +14,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
-public class OpenGridTest {
+public class TestOpenGrid {
     static Map map;
     int x;
     int y;
     int countAround;
 
     //构造函数注入
-    public OpenGridTest(int x,int y) {
+    public TestOpenGrid(int x, int y) {
         this.x = x;
         this.y = y;
     }

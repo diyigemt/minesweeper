@@ -8,7 +8,7 @@ import org.junit.Test;
  * @author duo
  *
  */
-public class GateTest {
+public class TestGate {
 
 	@Test
 	public void testMineSumCount() {

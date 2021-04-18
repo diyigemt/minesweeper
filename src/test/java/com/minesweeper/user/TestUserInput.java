@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @RunWith(Parameterized.class)
-public class UserInputTest {
+public class TestUserInput {
 
 
     @Parameterized.Parameters
