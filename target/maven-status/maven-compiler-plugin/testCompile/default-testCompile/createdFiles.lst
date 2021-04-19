@@ -1,1 +1,12 @@
 com\minesweeper\TestSimpleGame.class
+com\minesweeper\map\TestOpenGrid2.class
+com\minesweeper\map\TestOpenGrid.class
+com\minesweeper\map\TestGrid.class
+com\minesweeper\user\TestUserNextInput.class
+com\minesweeper\display\TestUtils.class
+com\minesweeper\map\TestMap.class
+com\minesweeper\map\TestLayBombToMap.class
+com\minesweeper\map\TestMap2.class
+com\minesweeper\repo\TestRepository.class
+com\minesweeper\map\TestGate.class
+com\minesweeper\user\TestUserInput.class

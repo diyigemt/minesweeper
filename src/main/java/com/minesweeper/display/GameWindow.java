@@ -118,7 +118,9 @@ public class GameWindow extends GridWindow {
 					if (isFirst) {
 						break;
 					}
-					grid.markGrid(map.map, this.posX, this.posY);
+					grid.markGrid(map.map, this.posY, this.posX);
+					this.setGameMap(map.map);
+					this.staticShow();
 					break;
 				}
 				case "p": {
@@ -139,9 +141,9 @@ public class GameWindow extends GridWindow {
 					this.setGameMap(map.map);
 					if (grid.isGameOver()) {
 						Main.currentWindowName = Constant.CURRENT_WINDOW.GAME_RESULT;
+						Main.isWin = grid.isGameWin();
 						Constant.GAME_TOTAL = Constant.GAME_TOTAL + 1;
 						if (grid.isGameWin()) {
-							Main.isWin = grid.isGameWin();
 							Constant.GAME_WIN = GAME_WIN + 1;
 						}
 						this.isRunning = false;

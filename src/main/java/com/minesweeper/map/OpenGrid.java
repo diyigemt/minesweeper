@@ -135,5 +135,6 @@ public class OpenGrid {
     public void reset() {
         this.isGameWin = false;
         this.isGameOver = false;
+        this.expandtags = 0;
     }
 }
