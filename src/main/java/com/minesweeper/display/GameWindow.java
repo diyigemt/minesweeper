@@ -125,7 +125,7 @@ public class GameWindow extends GridWindow {
 				}
 				case "p": {
 					Main.currentWindowName = Constant.CURRENT_WINDOW.PAUSE;
-					Store.setGameMap(map);
+//					Store.setGameMap(map);
 					this.isRunning = false;
 					break;
 				}

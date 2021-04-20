@@ -126,6 +126,8 @@ public class Repository implements IRepo {
 
     @Override
     public boolean clearHistory() {
+        Constant.GAME_TOTAL = 0;
+        Constant.GAME_WIN = 0;
         try {
             OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(HISTORY_FILE_NAME), StandardCharsets.UTF_8);
             writer.write("0");

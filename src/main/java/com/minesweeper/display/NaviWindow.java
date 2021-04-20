@@ -261,7 +261,7 @@ public class NaviWindow extends Window{
 								Main.currentWindowName = Constant.CURRENT_WINDOW.GAME;
 							} else if (pos == 1) {
 								Main.isPause = false;
-								Repository.getInstance().saveGameContext(Store.getGameMap());
+//								Repository.getInstance().saveGameContext(Store.getGameMap());
 								Main.currentWindowName = Constant.CURRENT_WINDOW.MAIN_MENU;
 							}
 							break;
